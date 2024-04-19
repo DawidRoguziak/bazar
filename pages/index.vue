@@ -3,7 +3,7 @@
 </script>
 
 <template>
-<div>
+<div class="text-amber-300 bg-red-400 w-full">
   ala
 </div>
 </template>
