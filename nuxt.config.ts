@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         api: {
-            key: ''
+            key: undefined
         }
     }
 });

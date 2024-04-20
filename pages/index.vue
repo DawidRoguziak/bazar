@@ -12,7 +12,6 @@
      test
    </UiButton>
 
-    {{ useRuntimeConfig().api.key }}
   </div>
 </div>
 </template>
