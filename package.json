@@ -11,13 +11,18 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^0.3.8",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-vue-next": "^0.372.0",
     "nuxt": "^3.11.2",
+    "radix-vue": "^1.7.1",
+    "shadcn-nuxt": "^0.10.2",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.3"
+    "@nuxtjs/tailwindcss": "^6.12.0"
   }
 }
