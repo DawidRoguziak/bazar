@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@nuxt/eslint": "^0.3.8",
+    "@vee-validate/zod": "^4.12.6",
+    "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-vue-next": "^0.372.0",
@@ -21,8 +23,10 @@
     "shadcn-nuxt": "^0.10.2",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "zod": "^3.22.5"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.0"
