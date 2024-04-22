@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
     devtools: { enabled: true },
     css: ["~/assets/main.css"],
-    modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt"],
+    modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt", "@nuxtjs/i18n"],
     shadcn: {
         /**
          * Prefix for all the imported component

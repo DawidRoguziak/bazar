@@ -21,6 +21,7 @@ const onSubmit = form.handleSubmit((values) => {
 <template>
     <div class="w-full p-6">
         <div class="text-display-regular">aa</div>
+        <div>{{ $t("welcome") }}</div>
         <div class="text-bazarSoftPrimary">
             sdasdsad
 
