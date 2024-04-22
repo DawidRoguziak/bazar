@@ -2,7 +2,12 @@
 export default defineNuxtConfig({
     devtools: { enabled: true },
     css: ["~/assets/main.css"],
-    modules: ["@nuxtjs/tailwindcss", "shadcn-nuxt", "@nuxtjs/i18n"],
+    modules: [
+        "@nuxtjs/tailwindcss",
+        "shadcn-nuxt",
+        "@pinia/nuxt",
+        "@nuxtjs/i18n",
+    ],
     shadcn: {
         /**
          * Prefix for all the imported component
@@ -15,6 +20,9 @@ export default defineNuxtConfig({
         componentDir: "./components/ui",
     },
     runtimeConfig: {
+        public: {
+            apiBase: undefined,
+        },
         api: {
             key: undefined,
         },

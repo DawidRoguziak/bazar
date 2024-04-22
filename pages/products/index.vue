@@ -3,8 +3,10 @@ definePageMeta({
     layout: "content-center",
 });
 
+const runtimeConfig = useRuntimeConfig();
+
 const { data, pending, error, refresh } = await useFetch(
-    "http://38.242.155.40:8000/api/categories",
+    `${runtimeConfig.public.apiBase}/api/categories`,
     {
         onResponse({ request, response, options }) {
             console.log("response", response._data);
@@ -15,8 +17,7 @@ const { data, pending, error, refresh } = await useFetch(
 
 <template>
     <div>
-        {{ data }}
-
+        {{ $t("welcome") }}
         <div>
             <UiButton @click="refresh"> Refresh </UiButton>
         </div>
