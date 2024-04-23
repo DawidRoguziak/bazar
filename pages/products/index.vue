@@ -22,7 +22,9 @@ const { data, pending, error, refresh } = await useFetch(
             <UiButton size="sm" @click="refresh"> Small Fill </UiButton>
             <UiButton @click="refresh"> Medium Fill </UiButton>
             <UiButton size="lg" @click="refresh"> Large Fill </UiButton>
-            <UiButton size="icon" @click="refresh"> A </UiButton>
+            <UiButton size="icon" @click="refresh">
+                <span class="material-symbols-outlined"> settings </span>
+            </UiButton>
         </div>
         <div class="">
             <UiButton variant="outline" size="sm" @click="refresh">
@@ -35,7 +37,7 @@ const { data, pending, error, refresh } = await useFetch(
                 Large Fill
             </UiButton>
             <UiButton variant="outline" size="icon" @click="refresh">
-                A
+                <span class="material-symbols-outlined"> settings </span>
             </UiButton>
         </div>
         <div class="">
@@ -47,7 +49,7 @@ const { data, pending, error, refresh } = await useFetch(
                 Large Fill
             </UiButton>
             <UiButton variant="ghost" size="icon" @click="refresh">
-                A
+                <span class="material-symbols-outlined"> settings </span>
             </UiButton>
         </div>
     </div>
