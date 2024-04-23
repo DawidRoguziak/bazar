@@ -1,4 +1,7 @@
 import type { Ref } from "vue";
+import LocalStorageWriter from "~/app-modules/local-storage/LocalStorageWriter";
+import { LocalStorageKeys } from "~/app-modules/local-storage/LocalStorageKeys";
+import LocalStorageReader from "~/app-modules/local-storage/LocalStorageReader";
 
 type AppLanguages = "en-US" | "pl-PL";
 
@@ -17,11 +20,18 @@ export const useLangStore = defineStore("langStore", (): LanguageStore => {
     function setLanguage(newLang: AppLanguages) {
         language.value = newLang;
         setLocale(newLang);
-        window.localStorage.setItem("lang", newLang);
+        LocalStorageWriter.save(LocalStorageKeys.BAZAR_LANGUAGE_KEY, newLang);
     }
 
     function getLanguage() {
-        const lang = window.localStorage.getItem("lang");
+        const lang = LocalStorageReader.read(
+            LocalStorageKeys.BAZAR_LANGUAGE_KEY
+        );
+
+        if (!lang) {
+            setLanguage("en-US");
+            return;
+        }
 
         if (!availableLanguage.value.includes(lang as AppLanguages)) {
             setLanguage("en-US");
