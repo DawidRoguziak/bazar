@@ -1,7 +1,44 @@
 const animate = require("tailwindcss-animate");
 
+const bazarColors = {
+    bazarSoftPrimary: "#84D187",
+    bazarPrimary: "#00B207",
+    bazarHardPrimary: "#2C742F",
+    bazarWarning: "#FF8A00",
+    bazarDanger: "#EA4B48",
+    bazarGray: {
+        50: "#F2F2F2",
+        100: "#E6E6E6",
+        200: "#CCCCCC",
+        300: "#B3B3B3",
+        400: "#999999",
+        500: "#808080",
+        600: "#666666",
+        700: "#4D4D4D",
+        800: "#333333",
+        900: "#1A1A1A",
+    },
+    bazarGreenGray: {
+        50: "#EDF2EE",
+        100: "#DAE5DA",
+        200: "#B4CCB4",
+        300: "#7A997C",
+        400: "#7A997C",
+        500: "#618062",
+        600: "#406B42",
+        700: "#2B572E",
+        800: "#173B1A",
+        900: "#002603",
+    },
+};
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    content: [
+        "./pages/**/*.{html,ts,js,vue}",
+        "./components/**/*.{html,js,ts,vue}",
+        "./app-modules/**/*.{html,js,ts,vue}",
+    ],
     darkMode: ["class"],
     safelist: ["dark"],
     prefix: "",
@@ -49,35 +86,7 @@ module.exports = {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
-                bazarSoftPrimary: "#84D187",
-                bazarPrimary: "#00B207",
-                bazarHardPrimary: "#2C742F",
-                bazarWarning: "#FF8A00",
-                bazarDanger: "#EA4B48",
-                bazarGray: {
-                    50: "#F2F2F2",
-                    100: "#E6E6E6",
-                    200: "#CCCCCC",
-                    300: "#B3B3B3",
-                    400: "#999999",
-                    500: "#808080",
-                    600: "#666666",
-                    700: "#4D4D4D",
-                    800: "#333333",
-                    900: "#1A1A1A",
-                },
-                bazarGreenGray: {
-                    50: "#EDF2EE",
-                    100: "#DAE5DA",
-                    200: "#B4CCB4",
-                    300: "#7A997C",
-                    400: "#7A997C",
-                    500: "#618062",
-                    600: "#406B42",
-                    700: "#2B572E",
-                    800: "#173B1A",
-                    900: "#002603",
-                },
+                ...bazarColors,
             },
             fontSize: {
                 "display-regular": [

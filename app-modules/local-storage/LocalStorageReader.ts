@@ -24,7 +24,8 @@ export default class LocalStorageReader {
         try {
             JSON.parse(item as string);
             return true;
-        } catch (e) {
+        } catch (error) {
+            console.error(error);
             return false;
         }
     }

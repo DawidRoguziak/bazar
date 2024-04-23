@@ -8,6 +8,7 @@ type AppLanguages = "en-US" | "pl-PL";
 type LanguageStore = {
     language: Ref<string>;
     availableLanguage: Ref<AppLanguages[]>;
+    langMap: Ref<Record<string, string>>;
     setLanguage: (language: AppLanguages) => void;
     getLanguage: () => void;
 };
@@ -15,6 +16,11 @@ type LanguageStore = {
 export const useLangStore = defineStore("langStore", (): LanguageStore => {
     const language = ref<AppLanguages>("en-US");
     const availableLanguage = ref<AppLanguages[]>(["pl-PL", "en-US"]);
+    const langMap = ref<Record<string, string>>({
+        "en-US": "EN",
+        "pl-PL": "PL",
+    });
+
     const { setLocale } = useI18n();
 
     function setLanguage(newLang: AppLanguages) {
@@ -41,5 +47,5 @@ export const useLangStore = defineStore("langStore", (): LanguageStore => {
         setLanguage(lang as AppLanguages);
     }
 
-    return { language, availableLanguage, setLanguage, getLanguage };
+    return { language, availableLanguage, langMap, setLanguage, getLanguage };
 });
