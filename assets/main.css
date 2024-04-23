@@ -90,8 +90,7 @@
     @font-face {
         font-family: "Poppins";
         font-weight: 600;
-        src: url("/fonts/Poppins-Medium.woff2") format("woff2");
-        /*  fix this to semi bold  */
+        src: url("/fonts/Poppins-SemiBold.woff2") format("woff2");
     }
 
     @font-face {

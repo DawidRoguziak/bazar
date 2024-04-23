@@ -18,8 +18,37 @@ const { data, pending, error, refresh } = await useFetch(
 <template>
     <div>
         {{ $t("welcome") }}
-        <div>
-            <UiButton @click="refresh"> Refresh </UiButton>
+        <div class="">
+            <UiButton size="sm" @click="refresh"> Small Fill </UiButton>
+            <UiButton @click="refresh"> Medium Fill </UiButton>
+            <UiButton size="lg" @click="refresh"> Large Fill </UiButton>
+            <UiButton size="icon" @click="refresh"> A </UiButton>
+        </div>
+        <div class="">
+            <UiButton variant="outline" size="sm" @click="refresh">
+                Small Fill
+            </UiButton>
+            <UiButton variant="outline" @click="refresh">
+                Medium Fill
+            </UiButton>
+            <UiButton variant="outline" size="lg" @click="refresh">
+                Large Fill
+            </UiButton>
+            <UiButton variant="outline" size="icon" @click="refresh">
+                A
+            </UiButton>
+        </div>
+        <div class="">
+            <UiButton variant="ghost" size="sm" @click="refresh">
+                Small Fill
+            </UiButton>
+            <UiButton variant="ghost" @click="refresh"> Medium Fill </UiButton>
+            <UiButton variant="ghost" size="lg" @click="refresh">
+                Large Fill
+            </UiButton>
+            <UiButton variant="ghost" size="icon" @click="refresh">
+                A
+            </UiButton>
         </div>
     </div>
 </template>
