@@ -23,8 +23,5 @@ export default defineNuxtConfig({
         public: {
             apiBase: undefined,
         },
-        api: {
-            key: undefined,
-        },
     },
 });
