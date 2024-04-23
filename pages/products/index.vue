@@ -6,12 +6,7 @@ definePageMeta({
 const runtimeConfig = useRuntimeConfig();
 
 const { data, pending, error, refresh } = await useFetch(
-    `${runtimeConfig.public.apiBase}/api/categories`,
-    {
-        onResponse({ request, response, options }) {
-            console.log("response", response._data);
-        },
-    }
+    `${runtimeConfig.public.apiBase}/api/categories`
 );
 </script>
 
