@@ -18,7 +18,7 @@ export default defineNuxtPlugin(() => {
 
     return {
         provide: {
-            customFetch: $bazarFetch,
+            bazarFetch: $bazarFetch,
         },
     };
 });

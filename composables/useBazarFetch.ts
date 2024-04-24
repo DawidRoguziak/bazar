@@ -4,8 +4,13 @@ export function useBazarFetch<T>(
     url: string | (() => string),
     options: UseFetchOptions<T> = {}
 ) {
-    return useFetch(url, {
+    const merged: UseFetchOptions<T> = {
+        headers: { "Content-Type": "application/json" },
         ...options,
-        $fetch: useNuxtApp().$customFetch,
+    };
+
+    return useFetch(url, {
+        ...merged,
+        $fetch: useNuxtApp().$bazarFetch,
     });
 }

@@ -2,11 +2,13 @@
 import type { HTMLAttributes } from "vue";
 import { useVModel } from "@vueuse/core";
 import { cn } from "@/lib/utils";
+import { type InputVariants, inputVariants } from "~/components/ui/input/index";
 
 const props = defineProps<{
     defaultValue?: string | number;
     modelValue?: string | number;
     class?: HTMLAttributes["class"];
+    variant?: InputVariants["variant"];
 }>();
 
 const emits = defineEmits<{
@@ -22,11 +24,6 @@ const modelValue = useVModel(props, "modelValue", emits, {
 <template>
     <input
         v-model="modelValue"
-        :class="
-            cn(
-                'flex h-10 w-full rounded-md border border-bazarGray-200 bg-background px-3 py-2 text-sm ring-offset-background  file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-                props.class
-            )
-        "
+        :class="cn(inputVariants({ variant }), props.class)"
     />
 </template>

@@ -4,6 +4,14 @@ import FormsCreateProduct from "~/app-modules/products/forms/FormsCreateProduct.
 definePageMeta({
     layout: "admin-menu",
 });
+
+function onSubmit() {
+    useNuxtApp().$bazarFetch("/api/products", {
+        method: "POST",
+        immediate: false,
+        body: {},
+    });
+}
 </script>
 
 <template>
