@@ -5,9 +5,7 @@ definePageMeta({
 </script>
 
 <template>
-    <div>
-        <div>tu będzie lista</div>
-    </div>
+    <div>tu będą jakieś ustawienia</div>
 </template>
 
 <style scoped></style>

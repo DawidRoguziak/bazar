@@ -3,11 +3,7 @@ definePageMeta({
     layout: "content-center",
 });
 
-const runtimeConfig = useRuntimeConfig();
-
-const { data, pending, error, refresh } = await useFetch(
-    `${runtimeConfig.public.apiBase}/api/categories`
-);
+function refresh() {}
 </script>
 
 <template>
@@ -45,6 +41,11 @@ const { data, pending, error, refresh } = await useFetch(
             </UiButton>
             <UiButton variant="ghost" size="icon" @click="refresh">
                 <span class="material-symbols-outlined"> settings </span>
+            </UiButton>
+        </div>
+        <div>
+            <UiButton variant="link" size="lg" @click="refresh">
+                Large Fill
             </UiButton>
         </div>
     </div>

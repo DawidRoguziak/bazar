@@ -12,6 +12,7 @@ export const buttonVariants = cva(
                     "!text-bazarPrimary bg-transparent border-[2px] border-bazarPrimary hover:border-bazarHardPrimary hover:!text-bazarHardPrimary",
                 ghost: "bg-bazarPrimary/10 hover:bg-bazarHardPrimary/20 !text-bazarPrimary hover:!text-bazarHardPrimary",
                 link: "text-primary underline-offset-4 hover:underline",
+                text: "text-bazarPrimary hover:border-bazarHardPrimary",
             },
             size: {
                 default:
