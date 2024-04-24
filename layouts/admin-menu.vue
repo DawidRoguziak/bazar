@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { cn } from "@/lib/utils";
 
-import type { LinkProp } from "~/components/layout-parts/NavMenu.vue";
+import type { LinkProp } from "~/components/app-menu/NavMenu.vue";
 
 interface AdminMenu {
     defaultCollapsed?: boolean;
@@ -83,12 +83,12 @@ function onExpand() {
                     BAZAR
                 </div>
                 <UiSeparator />
-                <LayoutPartsNavMenu
+                <AppMenuNavMenu
                     :is-collapsed="isCollapsed"
                     :links="productsLinks"
                 />
                 <UiSeparator />
-                <LayoutPartsNavMenu
+                <AppMenuNavMenu
                     :is-collapsed="isCollapsed"
                     :links="settingsLinks"
                 />
