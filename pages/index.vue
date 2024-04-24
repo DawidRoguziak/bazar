@@ -1,22 +1,4 @@
-<script setup lang="ts">
-import { toTypedSchema } from "@vee-validate/zod";
-import * as z from "zod";
-import { useForm } from "vee-validate";
-
-const formSchema = toTypedSchema(
-    z.object({
-        username: z.string().min(2).max(50),
-    })
-);
-
-const form = useForm({
-    validationSchema: formSchema,
-});
-
-const onSubmit = form.handleSubmit((values) => {
-    console.log("Form submitted!", values);
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
     <div class="w-full p-6">
@@ -57,21 +39,6 @@ const onSubmit = form.handleSubmit((values) => {
         </div>
 
         <div class="mt-2" />
-        <form @submit="onSubmit">
-            <UiFormField v-slot="{ componentField }" name="username">
-                <UiFormItem>
-                    <UiFormLabel>Username</UiFormLabel>
-                    <UiFormControl>
-                        <UiInput placeholder="shadcn" v-bind="componentField" />
-                    </UiFormControl>
-                    <UiFormDescription>
-                        This is your public display name.
-                    </UiFormDescription>
-                    <UiFormMessage />
-                </UiFormItem>
-            </UiFormField>
-            <UiButton type="submit"> Submit </UiButton>
-        </form>
     </div>
 </template>
 

@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import FormsCreateProduct from "~/app-modules/products/forms/FormsCreateProduct.vue";
+
 definePageMeta({
     layout: "admin-menu",
 });
 </script>
 
 <template>
-    <div>create product</div>
+    <div>
+        <FormsCreateProduct class="max-w-[400px]" />
+    </div>
 </template>
 
 <style scoped></style>

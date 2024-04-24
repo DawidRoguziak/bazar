@@ -19,13 +19,13 @@ const isCollapsed = ref(props.defaultCollapsed);
 
 const productsLinks: LinkProp[] = [
     {
-        title: t("Product list"),
+        title: t("product_list"),
         label: "",
         href: "/admin/products",
         icon: "package_2",
     },
     {
-        title: "Create Product",
+        title: t("product_create"),
         label: "",
         href: "/admin/products/create",
         icon: "box_add",
@@ -34,7 +34,7 @@ const productsLinks: LinkProp[] = [
 
 const settingsLinks: LinkProp[] = [
     {
-        title: "Settings",
+        title: t("settings"),
         label: "",
         href: "/admin/settings",
         icon: "settings",
@@ -51,7 +51,7 @@ function onExpand() {
 </script>
 
 <template>
-    <UiTooltipProvider class="h-svh" :delay-duration="0">
+    <UiTooltipProvider :delay-duration="0">
         <UiResizablePanelGroup
             id="resize-panel-group-1"
             direction="horizontal"
@@ -99,8 +99,10 @@ function onExpand() {
                 :default-size="85"
                 :min-size="30"
             >
-                <UiScrollArea class="h-svh p-2">
-                    <slot></slot>
+                <UiScrollArea class="h-svh">
+                    <div class="p-2 h-full w-full">
+                        <slot></slot>
+                    </div>
                 </UiScrollArea>
             </UiResizablePanel>
         </UiResizablePanelGroup>
