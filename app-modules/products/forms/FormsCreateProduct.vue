@@ -11,7 +11,7 @@ defineEmits<{
     submit: [data: FormCreateProduct, formRef: HTMLFormElement];
 }>();
 
-const formRef = useForm<HTMLFormElement>();
+const formRef = ref<HTMLFormElement>();
 
 const formSchema = toTypedSchema(
     object({
@@ -32,47 +32,43 @@ const onSubmit = handleSubmit((values: FormCreateProduct) => {
     <form ref="formRef" @submit.prevent="onSubmit">
         <UiCard class="pt-4">
             <UiCardContent>
-                <UiFormsInput
-                    label="name_en"
-                    name="name_en"
-                    variant="warning"
-                />
-                <UiFormsInput label="name_pl" name="name_pl" variant="error" />
-                <UiFormsInput
+                <UiFormInput label="name_en" name="name_en" variant="warning" />
+                <UiFormInput label="name_pl" name="name_pl" variant="error" />
+                <UiFormInput
                     label="Image"
                     name="image_url"
                     type="file"
                     variant="success"
                 />
 
-                <UiFormsInput label="description_en" name="description_en" />
-                <UiFormsInput label="description_pl" name="description_pl" />
+                <UiFormInput label="description_en" name="description_en" />
+                <UiFormInput label="description_pl" name="description_pl" />
 
-                <UiFormsInput
+                <UiFormInput
                     label="base_price_usd"
                     name="base_price_usd"
                     type="number"
                 />
-                <UiFormsInput
+                <UiFormInput
                     label="base_price_pln"
                     name="base_price_pln"
                     type="number"
                 />
 
-                <UiFormsInput
+                <UiFormInput
                     label="base_price_pln"
                     name="base_price_pln"
                     type="number"
                 />
 
-                <UiFormsInput label="discount" name="discount" type="number" />
+                <UiFormInput label="discount" name="discount" type="number" />
 
-                <UiFormsInput label="quantity" name="quantity" type="number" />
+                <UiFormInput label="quantity" name="quantity" type="number" />
 
-                <UiFormsInput label="weight" name="weight" type="number" />
+                <UiFormInput label="weight" name="weight" type="number" />
 
-                <UiFormsInput label="color_en" name="color_en" />
-                <UiFormsInput label="color_pl" name="color_pl" />
+                <UiFormInput label="color_en" name="color_en" />
+                <UiFormInput label="color_pl" name="color_pl" />
 
                 <div>tags_guids</div>
                 <div>category_guid</div>

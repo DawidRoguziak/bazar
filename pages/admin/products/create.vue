@@ -5,13 +5,7 @@ definePageMeta({
     layout: "admin-menu",
 });
 
-function onSubmit() {
-    useNuxtApp().$bazarFetch("/api/products", {
-        method: "POST",
-        immediate: false,
-        body: {},
-    });
-}
+function onSubmit() {}
 </script>
 
 <template>

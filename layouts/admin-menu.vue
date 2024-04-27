@@ -32,6 +32,15 @@ const productsLinks: LinkProp[] = [
     },
 ];
 
+const categoryLinks: LinkProp[] = [
+    {
+        title: t("create_category"),
+        label: "",
+        href: "/admin/categories/create",
+        icon: "package_2",
+    },
+];
+
 const settingsLinks: LinkProp[] = [
     {
         title: t("settings"),
@@ -86,6 +95,11 @@ function onExpand() {
                 <AppMenuNavMenu
                     :is-collapsed="isCollapsed"
                     :links="productsLinks"
+                />
+                <UiSeparator />
+                <AppMenuNavMenu
+                    :is-collapsed="isCollapsed"
+                    :links="categoryLinks"
                 />
                 <UiSeparator />
                 <AppMenuNavMenu

@@ -81,7 +81,7 @@ defineProps<NavProps>();
                                 variant: 'text',
                                 size: 'sm',
                             }),
-                            'justify-start'
+                            'justify-start py-1 px-2'
                         )
                     "
                 >
