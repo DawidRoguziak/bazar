@@ -5,6 +5,9 @@ import {
 } from "~/app-modules/categories/tables/categories/columns";
 import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
 import type { DataTableList } from "~/components/generic/data/DataTableList";
+import { useCategories } from "~/app-modules/categories/composables/useCategories";
+
+const { apiPath } = useCategories();
 
 const pagination = reactive<DataTablePagination>({
     pageCount: 1,
@@ -12,8 +15,8 @@ const pagination = reactive<DataTablePagination>({
     pageIndex: 0,
 });
 
-const { data, pending } = await useLazyAsyncData<DataTableList<Category>>(
-    "/api/categories",
+const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
+    apiPath,
     () =>
         ($fetch as any)(`/api/categories`, {
             query: {

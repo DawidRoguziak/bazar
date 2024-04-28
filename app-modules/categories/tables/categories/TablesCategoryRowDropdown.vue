@@ -10,12 +10,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import type { Category } from "./columns";
+import { useCategories } from "~/app-modules/categories/composables/useCategories";
 
 type PropsTablesCategoryRowDropdown = {
     category: Category;
 };
 
 defineProps<PropsTablesCategoryRowDropdown>();
+
+const { deleteCategory, editCategory } = useCategories();
 </script>
 
 <template>
@@ -29,8 +32,10 @@ defineProps<PropsTablesCategoryRowDropdown>();
         <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem @click="deleteCategory(category.guid)">
+                Delete
+            </DropdownMenuItem>
+            <DropdownMenuItem>Edit</DropdownMenuItem>
         </DropdownMenuContent>
     </DropdownMenu>
 </template>

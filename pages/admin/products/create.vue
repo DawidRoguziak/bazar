@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormsCreateProduct from "~/app-modules/products/forms/FormsCreateProduct.vue";
+import FormsCreateProduct from "~/app-modules/products/components/forms/FormsCreateProduct.vue";
 
 definePageMeta({
     layout: "admin-menu",

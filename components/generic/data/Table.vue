@@ -1,5 +1,4 @@
 <script setup lang="ts" generic="TData, TValue">
-import { type ColumnDef } from "@tanstack/vue-table";
 import { FlexRender, getCoreRowModel, useVueTable } from "@tanstack/vue-table";
 
 import {
@@ -15,20 +14,18 @@ import {
     useTablePagination,
 } from "~/components/generic/data/DataTablePagination";
 import { computed } from "vue";
+import type { PropsGenericDataTable } from "~/components/generic/data/DataTableList";
 
 const emit = defineEmits<{
     paginationChange: [pagination: DataTablePagination];
 }>();
 
-const props = defineProps<{
-    columns: ColumnDef<TData, TValue>[];
-    data?: {
-        items: TData[];
-        pages_count: number;
-        page_number: number;
-        page_size: number;
-    };
-}>();
+const props = withDefaults(
+    defineProps<PropsGenericDataTable<TData, TValue>>(),
+    {
+        pending: false,
+    }
+);
 
 const { canGoForth, canGoBack, goToPreviousPage, goToNextPage } =
     useTablePagination(emit, props);
@@ -90,6 +87,7 @@ const table = useVueTable({
                             </TableCell>
                         </TableRow>
                     </template>
+                    <template v-else-if="pending"> Loading </template>
                     <template v-else>
                         <TableRow>
                             <TableCell

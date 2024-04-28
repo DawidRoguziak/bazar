@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormsCreateCategory from "~/app-modules/categories/forms/FormsCreateCategory.vue";
+import FormsCreateCategory from "~/app-modules/categories/components/forms/FormsCreateCategory.vue";
 
 definePageMeta({
     layout: "admin-menu",
