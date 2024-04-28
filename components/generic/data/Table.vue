@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="TData, TValue">
-import { type ColumnDef, type PaginationState } from "@tanstack/vue-table";
+import { type ColumnDef } from "@tanstack/vue-table";
 import { FlexRender, getCoreRowModel, useVueTable } from "@tanstack/vue-table";
 
 import {
@@ -10,7 +10,11 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
+import {
+    type DataTablePagination,
+    useTablePagination,
+} from "~/components/generic/data/DataTablePagination";
+import { computed } from "vue";
 
 const emit = defineEmits<{
     paginationChange: [pagination: DataTablePagination];
@@ -18,34 +22,30 @@ const emit = defineEmits<{
 
 const props = defineProps<{
     columns: ColumnDef<TData, TValue>[];
-    data: TData[];
-    pageCount: number;
-    pageSize: number;
-    pageIndex: number;
+    data?: {
+        items: TData[];
+        pages_count: number;
+        page_number: number;
+        page_size: number;
+    };
 }>();
 
-const pagination = reactive<DataTablePagination>({
-    pageCount: props.pagesCount,
-    pageIndex: props.pageIndex,
-    pageSize: pagination.pageSize,
+const { canGoForth, canGoBack, goToPreviousPage, goToNextPage } =
+    useTablePagination(emit, props);
+
+const tableData = computed(() => {
+    return props?.data?.items ?? [];
 });
 
 const table = useVueTable({
     get data() {
-        return props.data;
+        return tableData.value;
     },
     get columns() {
         return props.columns;
     },
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
-    get pageCount() {
-        console.log(props.pageCount);
-        return props.pageCount ?? 0;
-    },
-    state: {
-        pagination,
-    },
 });
 </script>
 
@@ -107,16 +107,16 @@ const table = useVueTable({
             <UiButton
                 variant="outline"
                 size="sm"
-                :disabled="!table.getCanPreviousPage()"
-                @click="table.previousPage()"
+                :disabled="!canGoBack"
+                @click="goToPreviousPage"
             >
                 Previous
             </UiButton>
             <UiButton
                 variant="outline"
                 size="sm"
-                :disabled="!table.getCanNextPage()"
-                @click="table.nextPage()"
+                :disabled="!canGoForth"
+                @click="goToNextPage"
             >
                 Next
             </UiButton>

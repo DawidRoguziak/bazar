@@ -1,28 +1,50 @@
 <script setup lang="ts">
-import { columns } from "~/app-modules/categories/tables/categories/columns";
+import {
+    type Category,
+    columns,
+} from "~/app-modules/categories/tables/categories/columns";
 import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
+import type { DataTableList } from "~/components/generic/data/DataTableList";
 
-const { data } = await useFetch("/api/categories", {
-    method: "GET",
-    server: false,
+const pagination = reactive<DataTablePagination>({
+    pageCount: 1,
+    pageSize: 10,
+    pageIndex: 0,
 });
 
-const onPaginationChange = (pagination: DataTablePagination) => {
-    console.log(pagination);
+const { data, pending } = await useLazyAsyncData<DataTableList<Category>>(
+    "/api/categories",
+    () =>
+        ($fetch as any)(`/api/categories`, {
+            query: {
+                page_number: pagination.pageIndex,
+                page_size: pagination.pageSize,
+                pages_count: pagination.pageCount,
+            },
+        }),
+    {
+        default: () => ({
+            items: [],
+            pages_count: 0,
+            page_number: 0,
+            page_size: 0,
+        }),
+        watch: [pagination],
+    }
+);
+
+const onPaginationChange = (newPagination: DataTablePagination) => {
+    pagination.pageSize = newPagination.pageSize;
+    pagination.pageCount = newPagination.pageCount;
+    pagination.pageIndex = newPagination.pageIndex;
 };
 </script>
 
 <template>
-    <div class="container py-10 mx-auto">
-        <div>{{ data }}</div>
-        <GenericDataTable
-            v-if="data"
-            :columns="columns"
-            :data="data.items"
-            :page-count="data.pages_count"
-            :page-index="data.page_number"
-            :page-size="data.page_size"
-            @pagination-channged="onPaginationChange"
-        />
-    </div>
+    <GenericDataTable
+        v-if="data"
+        :columns="columns"
+        :data="data"
+        @pagination-change="onPaginationChange"
+    />
 </template>
