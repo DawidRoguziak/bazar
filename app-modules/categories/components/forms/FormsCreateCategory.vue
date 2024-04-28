@@ -2,6 +2,7 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import { object, string } from "zod";
 import { useForm } from "vee-validate";
+import type { Ref } from "vue";
 
 export type FormCreateCategory = {
     name_en: string;
@@ -9,7 +10,7 @@ export type FormCreateCategory = {
 };
 
 const emit = defineEmits<{
-    submit: [data: FormCreateCategory, formRef: HTMLFormElement];
+    submit: [data: FormCreateCategory, formRef: Ref<HTMLFormElement>];
 }>();
 
 const formRef = ref<HTMLFormElement>();
@@ -26,8 +27,8 @@ const { handleSubmit } = useForm({
 });
 
 const onSubmit = handleSubmit((values: FormCreateCategory) => {
-    console.log("Form submitted!", values);
-    emit("submit", { data: values, formRef });
+    emit("submit", { data: { ...values }, formRef });
+    formRef.value?.reset();
 });
 </script>
 
@@ -40,7 +41,7 @@ const onSubmit = handleSubmit((values: FormCreateCategory) => {
             </UiCardContent>
             <UiCardFooter>
                 <UiButton type="submit" class="w-full" size="sm">
-                    Submit
+                    {{ $t("submit") }}
                 </UiButton>
             </UiCardFooter>
         </UiCard>

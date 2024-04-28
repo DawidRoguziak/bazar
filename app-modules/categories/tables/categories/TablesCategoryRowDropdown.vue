@@ -27,17 +27,17 @@ const deleteCategory = inject(symbolDeleteCategory, () => {
     <DropdownMenu>
         <DropdownMenuTrigger as-child>
             <Button variant="ghost" class="w-8 h-8 p-0">
-                <span class="sr-only">Open menu</span>
+                <span class="sr-only">{{ $t("open_menu") }}</span>
                 <MoreHorizontal class="w-4 h-4" />
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>{{ $t("actions") }}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem @click="deleteCategory(category.guid)">
-                Delete
+                {{ $t("delete") }}
             </DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>{{ $t("edit") }}</DropdownMenuItem>
         </DropdownMenuContent>
     </DropdownMenu>
 </template>

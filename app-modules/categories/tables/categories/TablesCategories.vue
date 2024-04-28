@@ -63,7 +63,6 @@ provide(symbolEditCategory, editCategory);
 
 <template>
     <GenericDataTable
-        v-if="data"
         :columns="columns"
         :data="data"
         :pending="pending"

@@ -15,6 +15,7 @@ import {
 } from "~/components/generic/data/DataTablePagination";
 import { computed } from "vue";
 import type { PropsGenericDataTable } from "~/components/generic/data/DataTableList";
+import { Loader } from "~/components/ui/loader";
 
 const emit = defineEmits<{
     paginationChange: [pagination: DataTablePagination];
@@ -67,8 +68,10 @@ const table = useVueTable({
                         </TableHead>
                     </TableRow>
                 </TableHeader>
-                <TableBody>
-                    <template v-if="table.getRowModel().rows?.length">
+                <TableBody class="relative">
+                    <template
+                        v-if="!pending && table.getRowModel().rows?.length"
+                    >
                         <TableRow
                             v-for="row in table.getRowModel().rows"
                             :key="row.id"
@@ -88,7 +91,13 @@ const table = useVueTable({
                         </TableRow>
                     </template>
                     <template v-else-if="pending">
-                        {{ $t("loading") }}
+                        <div class="min-h-[200px]">
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-0.5 -translate-y-1/2"
+                            >
+                                <Loader />
+                            </div>
+                        </div>
                     </template>
                     <template v-else>
                         <TableRow>
