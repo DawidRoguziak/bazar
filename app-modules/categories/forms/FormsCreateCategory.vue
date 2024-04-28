@@ -35,8 +35,8 @@ const onSubmit = handleSubmit((values: FormCreateCategory) => {
     <form ref="formRef" @submit.prevent="onSubmit">
         <UiCard class="pt-4">
             <UiCardContent>
-                <UiFormInput label="name_en" name="name_en" />
-                <UiFormInput label="name_pl" name="name_pl" />
+                <FormInput label="name_en" name="name_en" />
+                <FormInput label="name_pl" name="name_pl" />
             </UiCardContent>
             <UiCardFooter>
                 <UiButton type="submit" class="w-full" size="sm">

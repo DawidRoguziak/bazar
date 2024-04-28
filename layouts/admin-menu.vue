@@ -34,10 +34,16 @@ const productsLinks: LinkProp[] = [
 
 const categoryLinks: LinkProp[] = [
     {
+        title: t("category_list"),
+        label: "",
+        href: "/admin/categories",
+        icon: "package_2",
+    },
+    {
         title: t("create_category"),
         label: "",
         href: "/admin/categories/create",
-        icon: "package_2",
+        icon: "box_add",
     },
 ];
 

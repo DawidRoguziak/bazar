@@ -9,16 +9,13 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import type { Category } from "./columns";
 
-defineProps<{
-    cat: {
-        id: string;
-    };
-}>();
+type PropsTablesCategoryRowDropdown = {
+    category: Category;
+};
 
-function copy(id: string) {
-    navigator.clipboard.writeText(id);
-}
+defineProps<PropsTablesCategoryRowDropdown>();
 </script>
 
 <template>
@@ -31,9 +28,6 @@ function copy(id: string) {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem @click="copy(payment.id)">
-                Copy payment ID
-            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>
