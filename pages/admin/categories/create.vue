@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import FormsCreateCategory from "~/app-modules/categories/components/forms/FormsCreateCategory.vue";
+import FormsCategory, {
+    type FormCategoryData,
+} from "~/app-modules/categories/components/forms/FormsCategory.vue";
+import type { Ref } from "vue";
 
 definePageMeta({
     layout: "admin-menu",
 });
 
-function onSubmit({ data }) {
+function onSubmit({
+    data,
+    setErrors,
+}: {
+    data: FormCategoryData;
+    setErrors(fields: any): void;
+}) {
     $fetch("/api/categories", {
         method: "POST",
         headers: {
@@ -19,7 +28,7 @@ function onSubmit({ data }) {
 
 <template>
     <div>
-        <FormsCreateCategory class="max-w-[400px]" @submit="onSubmit" />
+        <FormsCategory class="max-w-[400px]" @submit="onSubmit" />
     </div>
 </template>
 

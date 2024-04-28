@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import type { Category } from "./columns";
 import { symbolDeleteCategory } from "~/app-modules/categories/symbols/CategoryListTable";
+import ModalsEditCategory from "~/app-modules/categories/components/modals/ModalsEditCategory.vue";
 
 type PropsTablesCategoryRowDropdown = {
     category: Category;
@@ -18,9 +19,15 @@ type PropsTablesCategoryRowDropdown = {
 
 defineProps<PropsTablesCategoryRowDropdown>();
 
+const isOpen = ref(false);
+
 const deleteCategory = inject(symbolDeleteCategory, () => {
     console.error("deleteCategory function is not provided");
 });
+
+function openModal(): void {
+    isOpen.value = true;
+}
 </script>
 
 <template>
@@ -37,7 +44,14 @@ const deleteCategory = inject(symbolDeleteCategory, () => {
             <DropdownMenuItem @click="deleteCategory(category.guid)">
                 {{ $t("delete") }}
             </DropdownMenuItem>
-            <DropdownMenuItem>{{ $t("edit") }}</DropdownMenuItem>
+            <DropdownMenuItem @click="openModal">{{
+                $t("edit")
+            }}</DropdownMenuItem>
         </DropdownMenuContent>
+        <ModalsEditCategory
+            ref="modalRef"
+            :open="isOpen"
+            :category="category"
+        />
     </DropdownMenu>
 </template>
