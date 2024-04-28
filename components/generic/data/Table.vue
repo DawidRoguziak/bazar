@@ -40,8 +40,8 @@ const table = useVueTable({
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
     get pageCount() {
-        console.log(props.pagesCount);
-        return props.pagesCount ?? 0;
+        console.log(props.pageCount);
+        return props.pageCount ?? 0;
     },
     state: {
         pagination,
