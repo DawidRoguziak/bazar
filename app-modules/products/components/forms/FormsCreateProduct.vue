@@ -32,43 +32,43 @@ const onSubmit = handleSubmit((values: FormCreateProduct) => {
     <form ref="formRef" @submit.prevent="onSubmit">
         <UiCard class="pt-4">
             <UiCardContent>
-                <UiFormInput label="name_en" name="name_en" variant="warning" />
-                <UiFormInput label="name_pl" name="name_pl" variant="error" />
-                <UiFormInput
+                <FormInput label="name_en" name="name_en" variant="warning" />
+                <FormInput label="name_pl" name="name_pl" variant="error" />
+                <FormInput
                     label="Image"
                     name="image_url"
                     type="file"
                     variant="success"
                 />
 
-                <UiFormInput label="description_en" name="description_en" />
-                <UiFormInput label="description_pl" name="description_pl" />
+                <FormInput label="description_en" name="description_en" />
+                <FormInput label="description_pl" name="description_pl" />
 
-                <UiFormInput
+                <FormInput
                     label="base_price_usd"
                     name="base_price_usd"
                     type="number"
                 />
-                <UiFormInput
+                <FormInput
                     label="base_price_pln"
                     name="base_price_pln"
                     type="number"
                 />
 
-                <UiFormInput
+                <FormInput
                     label="base_price_pln"
                     name="base_price_pln"
                     type="number"
                 />
 
-                <UiFormInput label="discount" name="discount" type="number" />
+                <FormInput label="discount" name="discount" type="number" />
 
-                <UiFormInput label="quantity" name="quantity" type="number" />
+                <FormInput label="quantity" name="quantity" type="number" />
 
-                <UiFormInput label="weight" name="weight" type="number" />
+                <FormInput label="weight" name="weight" type="number" />
 
-                <UiFormInput label="color_en" name="color_en" />
-                <UiFormInput label="color_pl" name="color_pl" />
+                <FormInput label="color_en" name="color_en" />
+                <FormInput label="color_pl" name="color_pl" />
 
                 <div>tags_guids</div>
                 <div>category_guid</div>

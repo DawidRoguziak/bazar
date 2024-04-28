@@ -52,14 +52,14 @@ defineProps<NavProps>();
                             >
                                 {{ link.icon }}
                             </span>
-                            <span class="sr-only">{{ link.title }}</span>
+                            <span class="sr-only">{{ $t(link.title) }}</span>
                         </NuxtLink>
                     </UiTooltipTrigger>
                     <UiTooltipContent
                         side="right"
                         class="flex items-center gap-4"
                     >
-                        {{ link.title }}
+                        {{ $t(link.title) }}
                         <span
                             v-if="link.label"
                             class="ml-auto text-muted-foreground"
@@ -91,7 +91,7 @@ defineProps<NavProps>();
                     >
                         {{ link.icon }}
                     </span>
-                    {{ link.title }}
+                    {{ $t(link.title) }}
                     <span v-if="link.label">
                         {{ link.label }}
                     </span>

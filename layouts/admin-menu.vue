@@ -19,13 +19,13 @@ const isCollapsed = ref(props.defaultCollapsed);
 
 const productsLinks: LinkProp[] = [
     {
-        title: t("product_list"),
+        title: "product_list",
         label: "",
         href: "/admin/products",
         icon: "package_2",
     },
     {
-        title: t("product_create"),
+        title: "product_create",
         label: "",
         href: "/admin/products/create",
         icon: "box_add",
@@ -34,13 +34,13 @@ const productsLinks: LinkProp[] = [
 
 const categoryLinks: LinkProp[] = [
     {
-        title: t("category_list"),
+        title: "category_list",
         label: "",
         href: "/admin/categories",
         icon: "package_2",
     },
     {
-        title: t("create_category"),
+        title: "create_category",
         label: "",
         href: "/admin/categories/create",
         icon: "box_add",
@@ -49,7 +49,7 @@ const categoryLinks: LinkProp[] = [
 
 const settingsLinks: LinkProp[] = [
     {
-        title: t("settings"),
+        title: "settings",
         label: "",
         href: "/admin/settings",
         icon: "settings",
