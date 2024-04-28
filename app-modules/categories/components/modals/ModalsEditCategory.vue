@@ -5,10 +5,8 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import type { Category } from "~/app-modules/categories/tables/categories/columns";
-import FormsCategory, {
-    type FormCategoryData,
-} from "~/app-modules/categories/components/forms/FormsCategory.vue";
+import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
+import type { Category } from "~/app-modules/categories/types/Category";
 
 defineProps<{ category: Category }>();
 
@@ -22,11 +20,11 @@ function onSubmit({
     data,
     setErrors,
 }: {
-    data: FormCategoryData;
+    data: Partial<Category>;
     setErrors(fields: any): void;
 }) {
     $fetch("/api/categories", {
-        method: "POST",
+        method: "PUT",
         headers: {
             accept: "application/json",
             "Content-Type": "application/json",
@@ -43,7 +41,7 @@ function onSubmit({
                 <DialogTitle>{{ $t("edit_category") }}</DialogTitle>
             </DialogHeader>
 
-            <FormsCategory :initial-values="category" />
+            <FormsCategory @submit="onSubmit" :initial-values="category" />
         </DialogContent>
     </Dialog>
 </template>

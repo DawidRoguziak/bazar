@@ -1,13 +1,8 @@
 import type { ColumnDef } from "@tanstack/vue-table";
 import TablesCategoryRowDropdown from "~/app-modules/categories/tables/categories/TablesCategoryRowDropdown.vue";
+import type { Category } from "~/app-modules/categories/types/Category";
 
-export type Category = {
-    guid: string;
-    name_pl: string;
-    name_en: string;
-};
-
-export const columns: ColumnDef<Category>[] = [
+export const categoryListColumns: ColumnDef<Category>[] = [
     {
         accessorKey: "guid",
     },

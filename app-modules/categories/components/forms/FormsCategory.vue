@@ -2,18 +2,13 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import { object, string } from "zod";
 import { useForm } from "vee-validate";
-
-export type FormCategoryData = {
-    guid?: string;
-    name_en: string;
-    name_pl: string;
-};
+import type { Category } from "~/app-modules/categories/types/Category";
 
 const emit = defineEmits<{
-    submit: [data: FormCategoryData, setErrors: (fields: any) => void];
+    submit: [{ data: Partial<Category>; setErrors: (fields: any) => void }];
 }>();
 
-const props = defineProps<{ initialValues?: FormCategoryData }>();
+const props = defineProps<{ initialValues?: Category }>();
 
 const formSchema = toTypedSchema(
     object({
@@ -27,8 +22,11 @@ const { handleSubmit, setErrors, resetForm } = useForm({
     initialValues: props.initialValues ?? undefined,
 });
 
-const onSubmit = handleSubmit((values: FormCategoryData) => {
-    emit("submit", { data: { ...values }, setErrors });
+const onSubmit = handleSubmit((values: Partial<Category>) => {
+    emit("submit", {
+        data: { guid: props?.initialValues?.guid ?? undefined, ...values },
+        setErrors,
+    });
     resetForm();
 });
 </script>

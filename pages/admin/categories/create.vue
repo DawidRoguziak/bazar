@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import FormsCategory, {
-    type FormCategoryData,
-} from "~/app-modules/categories/components/forms/FormsCategory.vue";
-import type { Ref } from "vue";
+import type { Category } from "~/app-modules/categories/types/Category";
+import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
 
 definePageMeta({
     layout: "admin-menu",
@@ -12,7 +10,7 @@ function onSubmit({
     data,
     setErrors,
 }: {
-    data: FormCategoryData;
+    data: Category;
     setErrors(fields: any): void;
 }) {
     $fetch("/api/categories", {

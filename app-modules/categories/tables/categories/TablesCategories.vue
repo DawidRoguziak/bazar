@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import {
-    type Category,
-    columns,
-} from "~/app-modules/categories/tables/categories/columns";
 import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
 import type { DataTableList } from "~/components/generic/data/DataTableList";
 import {
     symbolDeleteCategory,
     symbolEditCategory,
 } from "~/app-modules/categories/symbols/CategoryListTable";
+import type { Category } from "~/app-modules/categories/types/Category";
+import { categoryListColumns } from "~/app-modules/categories/types/CategoryListColumns";
 
 const pagination = reactive<DataTablePagination>({
     pageCount: 1,
@@ -63,7 +61,7 @@ provide(symbolEditCategory, editCategory);
 
 <template>
     <GenericDataTable
-        :columns="columns"
+        :columns="categoryListColumns"
         :data="data"
         :pending="pending"
         @pagination-change="onPaginationChange"
