@@ -1,3 +1,5 @@
+import type { PropsGenericDataTable } from "~/components/generic/data/DataTableList";
+
 export type DataTablePagination = {
     pageCount: number;
     pageSize: number;
@@ -6,9 +8,7 @@ export type DataTablePagination = {
 
 export function useTablePagination(
     emit: (evt: "paginationChange", pagination: DataTablePagination) => void,
-    props: {
-        data: { pages_count: number; page_number: number; page_size: number };
-    }
+    props: Pick<PropsGenericDataTable<any, any>, "data">
 ) {
     const paginationState = reactive<DataTablePagination>({
         pageIndex: props?.data?.page_number ?? 0,

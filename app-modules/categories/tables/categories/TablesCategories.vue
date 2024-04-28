@@ -5,9 +5,10 @@ import {
 } from "~/app-modules/categories/tables/categories/columns";
 import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
 import type { DataTableList } from "~/components/generic/data/DataTableList";
-import { useCategories } from "~/app-modules/categories/composables/useCategories";
-
-const { apiPath } = useCategories();
+import {
+    symbolDeleteCategory,
+    symbolEditCategory,
+} from "~/app-modules/categories/symbols/CategoryListTable";
 
 const pagination = reactive<DataTablePagination>({
     pageCount: 1,
@@ -16,7 +17,7 @@ const pagination = reactive<DataTablePagination>({
 });
 
 const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
-    apiPath,
+    "categories",
     () =>
         ($fetch as any)(`/api/categories`, {
             query: {
@@ -36,11 +37,28 @@ const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
     }
 );
 
-const onPaginationChange = (newPagination: DataTablePagination) => {
+async function deleteCategory(guid: string) {
+    await $fetch(`/api/categories/${guid}`, {
+        method: "DELETE",
+    });
+    await refresh();
+}
+
+function editCategory(category: Category) {
+    return $fetch(`/api/categories`, {
+        method: "PUT",
+        body: category,
+    });
+}
+
+function onPaginationChange(newPagination: DataTablePagination) {
     pagination.pageSize = newPagination.pageSize;
     pagination.pageCount = newPagination.pageCount;
     pagination.pageIndex = newPagination.pageIndex;
-};
+}
+
+provide(symbolDeleteCategory, deleteCategory);
+provide(symbolEditCategory, editCategory);
 </script>
 
 <template>
@@ -48,6 +66,7 @@ const onPaginationChange = (newPagination: DataTablePagination) => {
         v-if="data"
         :columns="columns"
         :data="data"
+        :pending="pending"
         @pagination-change="onPaginationChange"
     />
 </template>

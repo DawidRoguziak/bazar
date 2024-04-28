@@ -87,14 +87,16 @@ const table = useVueTable({
                             </TableCell>
                         </TableRow>
                     </template>
-                    <template v-else-if="pending"> Loading </template>
+                    <template v-else-if="pending">
+                        {{ $t("loading") }}
+                    </template>
                     <template v-else>
                         <TableRow>
                             <TableCell
                                 :colSpan="columns.length"
                                 class="h-24 text-center"
                             >
-                                No results.
+                                {{ $t("no_results") }}
                             </TableCell>
                         </TableRow>
                     </template>
@@ -108,7 +110,7 @@ const table = useVueTable({
                 :disabled="!canGoBack"
                 @click="goToPreviousPage"
             >
-                Previous
+                {{ $t("previous") }}
             </UiButton>
             <UiButton
                 variant="outline"
@@ -116,7 +118,7 @@ const table = useVueTable({
                 :disabled="!canGoForth"
                 @click="goToNextPage"
             >
-                Next
+                {{ $t("next") }}
             </UiButton>
         </div>
     </div>

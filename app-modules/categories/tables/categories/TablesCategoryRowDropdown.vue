@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import type { Category } from "./columns";
-import { useCategories } from "~/app-modules/categories/composables/useCategories";
+import { symbolDeleteCategory } from "~/app-modules/categories/symbols/CategoryListTable";
 
 type PropsTablesCategoryRowDropdown = {
     category: Category;
@@ -18,7 +18,9 @@ type PropsTablesCategoryRowDropdown = {
 
 defineProps<PropsTablesCategoryRowDropdown>();
 
-const { deleteCategory, editCategory } = useCategories();
+const deleteCategory = inject(symbolDeleteCategory, () => {
+    console.error("deleteCategory function is not provided");
+});
 </script>
 
 <template>
