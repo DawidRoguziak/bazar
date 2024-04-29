@@ -5,10 +5,11 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
 import type { Category } from "~/app-modules/categories/types/Category";
+import FormsTag from "~/app-modules/tags/components/forms/FormsTag.vue";
+import type { Tag } from "~/app-modules/tags/types/Tag";
 
-defineProps<{ category: Category }>();
+defineProps<{ tag: Tag }>();
 
 const open = defineModel<boolean>("open", { default: false });
 
@@ -39,7 +40,7 @@ function onSubmit({
                 <DialogTitle>{{ $t("edit_category") }}</DialogTitle>
             </DialogHeader>
 
-            <FormsCategory @submit="onSubmit" :initial-values="category" />
+            <FormsTag @submit="onSubmit" :initial-values="tag" />
         </DialogContent>
     </Dialog>
 </template>

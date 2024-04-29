@@ -11,18 +11,19 @@ import {
 import { Button } from "@/components/ui/button";
 import { symbolDeleteCategory } from "~/app-modules/categories/symbols/CategoryListTable";
 import ModalsEditCategory from "~/app-modules/categories/components/modals/ModalsEditCategory.vue";
-import type { Category } from "~/app-modules/categories/types/Category";
+import type { Tag } from "~/app-modules/tags/types/Tag";
+import ModalsEditTag from "~/app-modules/tags/components/modals/ModalsEditTag.vue";
 
-type PropsTablesCategoryRowDropdown = {
-    category: Category;
+type PropsTablesTagRowDropdown = {
+    tag: Tag;
 };
 
-defineProps<PropsTablesCategoryRowDropdown>();
+defineProps<PropsTablesTagRowDropdown>();
 
 const isOpen = ref(false);
 
-const deleteCategory = inject(symbolDeleteCategory, () => {
-    console.error("deleteCategory function is not provided");
+const deleteTag = inject(symbolDeleteCategory, () => {
+    console.error("deleteTag function is not provided");
 });
 
 function openModal(): void {
@@ -41,17 +42,13 @@ function openModal(): void {
         <DropdownMenuContent align="end">
             <DropdownMenuLabel>{{ $t("actions") }}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem @click="deleteCategory(category.guid)">
+            <DropdownMenuItem @click="deleteTag(tag.guid)">
                 {{ $t("delete") }}
             </DropdownMenuItem>
             <DropdownMenuItem @click="openModal">{{
                 $t("edit")
             }}</DropdownMenuItem>
         </DropdownMenuContent>
-        <ModalsEditCategory
-            ref="modalRef"
-            :open="isOpen"
-            :category="category"
-        />
+        <ModalsEditTag ref="modalRef" :open="isOpen" :tag="tag" />
     </DropdownMenu>
 </template>

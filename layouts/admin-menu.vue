@@ -47,6 +47,21 @@ const categoryLinks: LinkProp[] = [
     },
 ];
 
+const tagsLinks: LinkProp[] = [
+    {
+        title: "tag_list",
+        label: "",
+        href: "/admin/tags",
+        icon: "package_2",
+    },
+    {
+        title: "create_tag",
+        label: "",
+        href: "/admin/tags/create",
+        icon: "box_add",
+    },
+];
+
 const settingsLinks: LinkProp[] = [
     {
         title: "settings",
@@ -106,6 +121,11 @@ function onExpand() {
                 <AppMenuNavMenu
                     :is-collapsed="isCollapsed"
                     :links="categoryLinks"
+                />
+                <UiSeparator />
+                <AppMenuNavMenu
+                    :is-collapsed="isCollapsed"
+                    :links="tagsLinks"
                 />
                 <UiSeparator />
                 <AppMenuNavMenu
