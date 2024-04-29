@@ -14,4 +14,8 @@ export default {
     category_list: "Category list",
     create_category: "Create category",
     submit: "Submit",
+    edit_category: "Edit category",
+    tag_list: "Tag list",
+    create_tag: "Create tag",
+    edit_tag: "Edit tag",
 };

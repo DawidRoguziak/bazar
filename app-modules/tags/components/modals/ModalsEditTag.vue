@@ -37,7 +37,7 @@ function onSubmit({
     <Dialog v-model:open="open">
         <DialogContent class="sm:max-w-[425px] p-0 max-h-[90dvh]">
             <DialogHeader class="p-6 pb-0">
-                <DialogTitle>{{ $t("edit_category") }}</DialogTitle>
+                <DialogTitle>{{ $t("edit_tag") }}</DialogTitle>
             </DialogHeader>
 
             <FormsTag @submit="onSubmit" :initial-values="tag" />
