@@ -45,7 +45,7 @@ async function deleteTag(guid: string) {
 }
 
 async function editTag(category: Tag) {
-    return $fetch(`/api/tags`, {
+    await $fetch(`/api/tags`, {
         method: "PUT",
         body: category,
     });

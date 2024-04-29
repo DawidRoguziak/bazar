@@ -20,7 +20,7 @@ function onSubmit({
     data: Partial<Category>;
     setErrors(fields: any): void;
 }) {
-    $fetch("/api/categories", {
+    $fetch("/api/tags", {
         method: "PUT",
         headers: {
             accept: "application/json",

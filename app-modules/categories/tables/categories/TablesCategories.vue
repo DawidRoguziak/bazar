@@ -42,11 +42,12 @@ async function deleteCategory(guid: string) {
     await refresh();
 }
 
-function editCategory(category: Category) {
-    return $fetch(`/api/categories`, {
+async function editCategory(category: Category) {
+    await $fetch(`/api/categories`, {
         method: "PUT",
         body: category,
     });
+
     await refresh();
 }
 
