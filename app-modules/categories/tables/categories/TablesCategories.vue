@@ -43,7 +43,7 @@ async function deleteCategory(guid: string) {
 }
 
 async function editCategory(category: Category) {
-    await $fetch(`/api/categories`, {
+    await $fetch(`/api/categories/${category.guid}`, {
         method: "PUT",
         body: category,
     });

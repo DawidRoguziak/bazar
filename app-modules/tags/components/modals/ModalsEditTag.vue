@@ -8,26 +8,24 @@ import {
 import type { Category } from "~/app-modules/categories/types/Category";
 import FormsTag from "~/app-modules/tags/components/forms/FormsTag.vue";
 import type { Tag } from "~/app-modules/tags/types/Tag";
+import { symbolEditTag } from "~/app-modules/tags/symbols/TagListTable";
 
 defineProps<{ tag: Tag }>();
 
 const open = defineModel<boolean>("open", { default: false });
 
+const editTags = inject(symbolEditTag, () => {
+    console.error("edit tags not provided");
+});
+
 function onSubmit({
     data,
     setErrors,
 }: {
-    data: Partial<Category>;
+    data: Partial<Tag>;
     setErrors(fields: any): void;
 }) {
-    $fetch("/api/tags", {
-        method: "PUT",
-        headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: { ...data },
-    });
+    editTags(data);
 
     open.value = false;
 }

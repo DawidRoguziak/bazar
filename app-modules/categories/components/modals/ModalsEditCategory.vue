@@ -7,10 +7,15 @@ import {
 } from "@/components/ui/dialog";
 import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
 import type { Category } from "~/app-modules/categories/types/Category";
+import { symbolEditCategory } from "~/app-modules/categories/symbols/CategoryListTable";
 
 defineProps<{ category: Category }>();
 
 const open = defineModel<boolean>("open", { default: false });
+
+const editCategory = inject(symbolEditCategory, () => {
+    console.error("edit category not provided");
+});
 
 function onSubmit({
     data,
@@ -19,15 +24,7 @@ function onSubmit({
     data: Partial<Category>;
     setErrors(fields: any): void;
 }) {
-    $fetch("/api/categories", {
-        method: "PUT",
-        headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: { ...data },
-    });
-
+    editCategory(data);
     open.value = false;
 }
 </script>

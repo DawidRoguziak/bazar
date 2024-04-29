@@ -44,10 +44,10 @@ async function deleteTag(guid: string) {
     await refresh();
 }
 
-async function editTag(category: Tag) {
-    await $fetch(`/api/tags`, {
+async function editTag(tag: Tag) {
+    await $fetch(`/api/tags/${tag}`, {
         method: "PUT",
-        body: category,
+        body: tag,
     });
     await refresh();
 }
