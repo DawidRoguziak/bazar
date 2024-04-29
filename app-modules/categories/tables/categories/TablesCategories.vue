@@ -47,6 +47,7 @@ function editCategory(category: Category) {
         method: "PUT",
         body: category,
     });
+    await refresh();
 }
 
 function onPaginationChange(newPagination: DataTablePagination) {

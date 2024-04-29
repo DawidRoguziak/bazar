@@ -44,11 +44,12 @@ async function deleteTag(guid: string) {
     await refresh();
 }
 
-function editTag(category: Category) {
+async function editTag(category: Tag) {
     return $fetch(`/api/tags`, {
         method: "PUT",
         body: category,
     });
+    await refresh();
 }
 
 function onPaginationChange(newPagination: DataTablePagination) {
