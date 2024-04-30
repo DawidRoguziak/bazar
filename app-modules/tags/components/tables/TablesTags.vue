@@ -2,7 +2,6 @@
 import { tagListColumns } from "~/app-modules/tags/types/TagListColumns";
 import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
 import type { DataTableList } from "~/components/generic/data/DataTableList";
-import type { Category } from "~/app-modules/categories/types/Category";
 import type { Tag } from "~/app-modules/tags/types/Tag";
 
 import {
