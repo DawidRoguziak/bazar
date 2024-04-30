@@ -69,9 +69,7 @@ const table = useVueTable({
                     </TableRow>
                 </TableHeader>
                 <TableBody class="relative">
-                    <template
-                        v-if="!pending && table.getRowModel().rows?.length"
-                    >
+                    <template v-if="table.getRowModel().rows?.length">
                         <TableRow
                             v-for="row in table.getRowModel().rows"
                             :key="row.id"
@@ -89,8 +87,22 @@ const table = useVueTable({
                                 />
                             </TableCell>
                         </TableRow>
+                        <div
+                            v-if="pending"
+                            class="w-full h-full top-0 bottom-0 left-0 right-0 bg-neutral-100/20 absolute"
+                        >
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-0.5 -translate-y-1/2"
+                            >
+                                <Loader />
+                            </div>
+                        </div>
                     </template>
-                    <template v-else-if="pending">
+                    <template
+                        v-else-if="
+                            pending && table.getRowModel().rows?.length === 0
+                        "
+                    >
                         <div class="min-h-[200px]">
                             <div
                                 class="absolute top-1/2 left-1/2 -translate-x-0.5 -translate-y-1/2"

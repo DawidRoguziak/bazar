@@ -1,5 +1,5 @@
 import type { ColumnDef } from "@tanstack/vue-table";
-import TablesCategoryRowDropdown from "~/app-modules/categories/tables/categories/TablesCategoryRowDropdown.vue";
+import TablesCategoryRowDropdown from "~/app-modules/categories/components/tables/TablesCategoryRowDropdown.vue";
 import type { Category } from "~/app-modules/categories/types/Category";
 
 export const categoryListColumns: ColumnDef<Category>[] = [

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { Category } from "~/app-modules/categories/types/Category";
 import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
+import { useCategoriesApi } from "~/app-modules/categories/composables/useCategoriesApi";
 
 definePageMeta({
     layout: "admin-menu",
 });
+
+const { createCategory } = useCategoriesApi();
 
 function onSubmit({
     data,
@@ -13,14 +16,7 @@ function onSubmit({
     data: Category;
     setErrors(fields: any): void;
 }) {
-    $fetch("/api/categories", {
-        method: "POST",
-        headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: { ...data },
-    });
+    createCategory(data);
 }
 </script>
 

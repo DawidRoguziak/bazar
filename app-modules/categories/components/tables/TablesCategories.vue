@@ -7,6 +7,7 @@ import {
 } from "~/app-modules/categories/symbols/CategoryListTable";
 import type { Category } from "~/app-modules/categories/types/Category";
 import { categoryListColumns } from "~/app-modules/categories/types/CategoryListColumns";
+import { useCategoriesApi } from "~/app-modules/categories/composables/useCategoriesApi";
 
 const pagination = reactive<DataTablePagination>({
     pageCount: 1,
@@ -14,16 +15,11 @@ const pagination = reactive<DataTablePagination>({
     pageIndex: 0,
 });
 
+const { deleteCategory, getCategories, editCategory } = useCategoriesApi();
+
 const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
     "categories",
-    () =>
-        ($fetch as any)(`/api/categories`, {
-            query: {
-                page_number: pagination.pageIndex,
-                page_size: pagination.pageSize,
-                pages_count: pagination.pageCount,
-            },
-        }),
+    () => getCategories(pagination),
     {
         default: () => ({
             items: [],
@@ -35,19 +31,13 @@ const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
     }
 );
 
-async function deleteCategory(guid: string) {
-    await $fetch(`/api/categories/${guid}`, {
-        method: "DELETE",
-    });
+async function submitDeleteCategory(guid: string) {
+    await deleteCategory(guid);
     await refresh();
 }
 
-async function editCategory(category: Category) {
-    await $fetch(`/api/categories/${category.guid}`, {
-        method: "PUT",
-        body: category,
-    });
-
+async function submitEditCategory(category: Category) {
+    await editCategory(category);
     await refresh();
 }
 
@@ -57,8 +47,8 @@ function onPaginationChange(newPagination: DataTablePagination) {
     pagination.pageIndex = newPagination.pageIndex;
 }
 
-provide(symbolDeleteCategory, deleteCategory);
-provide(symbolEditCategory, editCategory);
+provide(symbolDeleteCategory, submitDeleteCategory);
+provide(symbolEditCategory, submitEditCategory);
 </script>
 
 <template>
