@@ -9,6 +9,7 @@ import {
     symbolDeleteTag,
     symbolEditTag,
 } from "~/app-modules/tags/symbols/TagListTable";
+import { useTagsApi } from "~/app-modules/tags/composable/useTagsApi";
 
 const pagination = reactive<DataTablePagination>({
     pageCount: 1,
@@ -16,16 +17,11 @@ const pagination = reactive<DataTablePagination>({
     pageIndex: 0,
 });
 
+const { deleteTag, getTags, editTag } = useTagsApi();
+
 const { data, pending, refresh } = useLazyAsyncData<DataTableList<Tag>>(
     "tags",
-    () =>
-        ($fetch as any)(`/api/tags`, {
-            query: {
-                page_number: pagination.pageIndex,
-                page_size: pagination.pageSize,
-                pages_count: pagination.pageCount,
-            },
-        }),
+    () => getTags(pagination),
     {
         default: () => ({
             items: [],
@@ -37,18 +33,13 @@ const { data, pending, refresh } = useLazyAsyncData<DataTableList<Tag>>(
     }
 );
 
-async function deleteTag(guid: string) {
-    await $fetch(`/api/tags/${guid}`, {
-        method: "DELETE",
-    });
+async function submitDeleteTag(guid: string) {
+    await deleteTag(guid);
     await refresh();
 }
 
-async function editTag(tag: Tag) {
-    await $fetch(`/api/tags/${tag}`, {
-        method: "PUT",
-        body: tag,
-    });
+async function submitEditTag(tag: Tag) {
+    await editTag(tag);
     await refresh();
 }
 
@@ -58,8 +49,8 @@ function onPaginationChange(newPagination: DataTablePagination) {
     pagination.pageIndex = newPagination.pageIndex;
 }
 
-provide(symbolDeleteTag, deleteTag);
-provide(symbolEditTag, editTag);
+provide(symbolDeleteTag, submitDeleteTag);
+provide(symbolEditTag, submitEditTag);
 </script>
 
 <template>

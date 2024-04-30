@@ -1,27 +1,22 @@
 <script setup lang="ts">
-import type { Category } from "~/app-modules/categories/types/Category";
-import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
 import FormsTag from "~/app-modules/tags/components/forms/FormsTag.vue";
+import { useTagsApi } from "~/app-modules/tags/composable/useTagsApi";
+import type { Tag } from "~/app-modules/tags/types/Tag";
 
 definePageMeta({
     layout: "admin-menu",
 });
 
+const { createTag } = useTagsApi();
+
 function onSubmit({
     data,
     setErrors,
 }: {
-    data: Category;
+    data: Tag;
     setErrors(fields: any): void;
 }) {
-    $fetch("/api/tags", {
-        method: "POST",
-        headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-        },
-        body: { ...data },
-    });
+    createTag(data);
 }
 </script>
 

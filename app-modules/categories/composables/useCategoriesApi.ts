@@ -12,7 +12,9 @@ export function useCategoriesApi() {
         });
     }
 
-    async function createCategory(data: Omit<Category, "guid">) {
+    async function createCategory(
+        data: Omit<Category, "guid">
+    ): Promise<Category> {
         return $fetch("/api/categories", {
             method: "POST",
             headers: {
@@ -23,13 +25,13 @@ export function useCategoriesApi() {
         });
     }
 
-    async function deleteCategory(guid: string) {
+    async function deleteCategory(guid: string): Promise<void> {
         return $fetch(`/api/categories/${guid}`, {
             method: "DELETE",
         });
     }
 
-    async function editCategory(category: Category) {
+    async function editCategory(category: Category): Promise<Category> {
         return $fetch(`/api/categories/${category.guid}`, {
             method: "PUT",
             body: category,
