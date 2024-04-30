@@ -70,23 +70,25 @@ const table = useVueTable({
                 </TableHeader>
                 <TableBody class="relative">
                     <template v-if="table.getRowModel().rows?.length">
-                        <TableRow
-                            v-for="row in table.getRowModel().rows"
-                            :key="row.id"
-                            :data-state="
-                                row.getIsSelected() ? 'selected' : undefined
-                            "
-                        >
-                            <TableCell
-                                v-for="cell in row.getVisibleCells()"
-                                :key="cell.id"
+                        <TransitionGroup name="list">
+                            <TableRow
+                                v-for="row in table.getRowModel().rows"
+                                :key="row.id"
+                                :data-state="
+                                    row.getIsSelected() ? 'selected' : undefined
+                                "
                             >
-                                <FlexRender
-                                    :render="cell.column.columnDef.cell"
-                                    :props="cell.getContext()"
-                                />
-                            </TableCell>
-                        </TableRow>
+                                <TableCell
+                                    v-for="cell in row.getVisibleCells()"
+                                    :key="cell.id"
+                                >
+                                    <FlexRender
+                                        :render="cell.column.columnDef.cell"
+                                        :props="cell.getContext()"
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        </TransitionGroup>
                         <div
                             v-if="pending"
                             class="w-full h-full top-0 bottom-0 left-0 right-0 bg-neutral-100/20 absolute"
@@ -144,3 +146,15 @@ const table = useVueTable({
         </div>
     </div>
 </template>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+</style>
