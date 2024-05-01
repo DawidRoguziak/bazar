@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    tags:
+      - "**"
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Pull
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: "cd bazar && git pull --rebase"
+    - name: Rebuild
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: "cd bazar && docker compose down && docker compose up --build -d --remove-orphans"
