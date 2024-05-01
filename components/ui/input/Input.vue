@@ -6,8 +6,6 @@ import { type InputVariants, inputVariants } from "~/components/ui/input/index";
 
 const props = withDefaults(
     defineProps<{
-        defaultValue?: string | number;
-        modelValue?: string | number;
         class?: HTMLAttributes["class"];
         variant?: InputVariants["variant"];
         type?: "text" | "password" | "file" | "number";
@@ -23,22 +21,16 @@ const props = withDefaults(
 const emits = defineEmits<{
     (e: "update:modelValue", payload: string | number): void;
 }>();
-
-const modelValue = useVModel(props, "modelValue", emits, {
-    passive: true,
-    defaultValue: props.defaultValue,
-});
 </script>
 
 <template>
     <div class="form-field">
-        <UiFormField v-slot="{ componentField }" :name="name">
+        <UiFormField v-slot="{ field }" :name="name">
             <UiFormItem>
                 <UiFormLabel>{{ label }}</UiFormLabel>
                 <UiFormControl>
                     <input
-                        v-model="modelValue"
-                        v-bind="componentField"
+                        v-bind="field"
                         :type="type"
                         :class="cn(inputVariants({ variant }), props.class)"
                     />
