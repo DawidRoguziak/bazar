@@ -16,7 +16,7 @@ const formSchema = toTypedSchema(
     object({
         name: string().min(2).max(80),
         logo_url: z
-            .instanceof(File)
+            .instanceof(File, { message: t("validation.required") })
             .refine(
                 (file: File) => file?.size <= MAX_UPLOAD_SIZE,
                 t("validation.file_to_large", { maxSize: MAX_UPLOAD_SIZE })
