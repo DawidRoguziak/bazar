@@ -21,40 +21,44 @@ const formSchema = toTypedSchema(
             .optional(),
     }).superRefine(
         (
-            arg,
+            args,
             ctx
-        ): arg is { name: string; logo_url: string; logo_file: File } => {
-            if (!!arg.logo_url) {
-                if (!!arg.logo_file) {
+        ): args is { name: string; logo_url: string; logo_file: File } => {
+            if (!args.logo_url) {
+                if (!args.logo_file) {
                     ctx.addIssue({
                         code: z.ZodIssueCode.custom,
                         message: t("validation.required"),
+                        path: ["logo_file"],
                     });
+
                     return z.NEVER;
                 }
 
-                if (arg.logo_file?.size <= MAX_UPLOAD_SIZE) {
+                console.log(args.logo_file?.size, MAX_UPLOAD_SIZE);
+                if (MAX_UPLOAD_SIZE <= (args?.logo_file?.size ?? 0)) {
                     ctx.addIssue({
                         code: z.ZodIssueCode.custom,
                         message: t("validation.file_to_large", {
                             maxSize: MAX_UPLOAD_SIZE,
                         }),
+                        path: ["logo_file"],
                     });
+
+                    return z.NEVER;
                 }
 
-                if (ACCEPTED_FILE_TYPES.includes(arg?.logo_file?.type ?? "")) {
+                if (
+                    !ACCEPTED_FILE_TYPES.includes(args?.logo_file?.type ?? "")
+                ) {
                     ctx.addIssue({
                         code: z.ZodIssueCode.custom,
                         message: t("validation.we_accept_only", {
                             fileTypes: ACCEPTED_FILE_TYPES.join(","),
                         }),
+                        path: ["logo_file"],
                     });
                 }
-            } else {
-                ctx.addIssue({
-                    code: z.ZodIssueCode.custom,
-                    message: t("validation.required"),
-                });
             }
 
             return z.NEVER;
@@ -79,7 +83,6 @@ const onSubmit = handleSubmit((values: Omit<Brand, "guid">) => {
 <template>
     <UiCard class="pt-4">
         <UiCardContent>
-            {{ values }}
             <form @submit.prevent="onSubmit">
                 <UiInput :label="$t('name')" name="name"></UiInput>
 
