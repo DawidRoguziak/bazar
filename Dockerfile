@@ -16,7 +16,7 @@ RUN npm ci
 COPY --link . .
 
 RUN npm run build
-RUN npm prune
+#RUN npm prune
 
 # Run
 FROM base
