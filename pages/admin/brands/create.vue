@@ -12,7 +12,9 @@ function onSubmit({
 }: {
     data: Partial<Brand>;
     setErrors(fields: any): void;
-}) {}
+}) {
+    console.log(data);
+}
 </script>
 
 <template>
