@@ -13,18 +13,17 @@ export function useBrandsApi() {
         });
     }
 
-    async function submitBrand(newBrand: Brand) {
+    async function submitBrand(newBrand: Partial<Brand>) {
         let fileUploadResult = null;
         if (newBrand.logo_file) {
             fileUploadResult = await saveBrandFile(newBrand.logo_file);
         }
 
-        console.log(fileUploadResult);
         return $fetch("/api/brands", {
             method: "POST",
             body: {
                 name: newBrand.name,
-                logo_url: fileUploadResult.file_url,
+                logo_url: fileUploadResult?.file_url,
             },
         });
     }
