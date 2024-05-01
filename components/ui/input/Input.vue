@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue";
-import { useVModel } from "@vueuse/core";
 import { cn } from "@/lib/utils";
 import { type InputVariants, inputVariants } from "~/components/ui/input/index";
 
@@ -25,7 +24,7 @@ const emits = defineEmits<{
 
 <template>
     <div class="form-field">
-        <UiFormField v-slot="{ field }" :name="name">
+        <UiFormField v-slot="{ field }" :type="type" :name="name">
             <UiFormItem>
                 <UiFormLabel>{{ label }}</UiFormLabel>
                 <UiFormControl>

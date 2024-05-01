@@ -18,4 +18,13 @@ export default {
     tag_list: "Lista tagów",
     create_tag: "Stwórz tag",
     edit_tag: "Edytuj tag",
+    name: "Nazwa",
+    logo_img: "Logo",
+    validation: {
+        file_to_large: "Maxymalny rozmiar pliku to {maxSize}",
+        we_accept_only: "Plik musi być {fileTypes}",
+        required: "Wymagane",
+        max_length: "Max długość {l}",
+        min_length: "Min długość {l}",
+    },
 };

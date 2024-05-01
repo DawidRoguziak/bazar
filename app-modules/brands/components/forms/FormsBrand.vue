@@ -18,30 +18,29 @@ const formSchema = toTypedSchema(
         logo_url: z
             .instanceof(File)
             .refine(
-                (file) => file?.size <= MAX_UPLOAD_SIZE,
-                t("to_large_file", { maxSize: MAX_UPLOAD_SIZE })
+                (file: File) => file?.size <= MAX_UPLOAD_SIZE,
+                t("validation.file_to_large", { maxSize: MAX_UPLOAD_SIZE })
             )
             .refine(
-                (file) => ACCEPTED_FILE_TYPES.includes(file),
-                t("we_accept_only", {
+                (file: File) => ACCEPTED_FILE_TYPES.includes(file?.type),
+                t("validation.we_accept_only", {
                     fileTypes: ACCEPTED_FILE_TYPES.join(","),
                 })
             ),
     })
 );
 
-const { handleSubmit, setErrors, resetForm } = useForm({
+const { handleSubmit, setErrors, handleReset } = useForm({
     validationSchema: formSchema,
     initialValues: props.initialValues ?? undefined,
 });
 
-const onSubmit = handleSubmit((values: Partial<Brand>) => {
-    console.log(values);
+const onSubmit = handleSubmit((values: Omit<Brand, "guid">) => {
     emit("submit", {
         data: { guid: props?.initialValues?.guid ?? undefined, ...values },
         setErrors,
     });
-    resetForm();
+    handleReset();
 });
 </script>
 
