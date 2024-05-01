@@ -35,8 +35,8 @@ const onSubmit = handleSubmit((values: Partial<Tag>) => {
     <UiCard class="pt-4">
         <UiCardContent>
             <form @submit.prevent="onSubmit">
-                <FormFieldInput label="name_en" name="en" />
-                <FormFieldInput label="name_pl" name="pl" />
+                <UiInput label="name_en" name="en" />
+                <UiInput label="name_pl" name="pl" />
 
                 <UiButton type="submit" class="w-full mt-5" size="sm">
                     {{ $t("submit") }}

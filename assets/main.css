@@ -126,6 +126,10 @@
     body {
         @apply bg-background text-foreground;
     }
+
+    form .form-field {
+        @apply mb-3;
+    }
 }
 
 body {
