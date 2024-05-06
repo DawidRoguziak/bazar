@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
-import { type Category, CategoryRepository } from "~/repositories/Categories";
+import { type Category, CategoriesRepository } from "~/repositories/Categories";
 
 definePageMeta({
     layout: "admin-menu",
 });
 
 const { $apiPublicFetch } = useNuxtApp();
-const categoryRepo = CategoryRepository($apiPublicFetch);
+const categoryRepo = CategoriesRepository($apiPublicFetch);
 
 function onSubmit({
     data,

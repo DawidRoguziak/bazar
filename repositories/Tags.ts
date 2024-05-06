@@ -9,7 +9,7 @@ export type Tag = {
     en: string;
 };
 
-export const TagRepository = (fetch: $Fetch<Tag, NitroFetchRequest>) => ({
+export const TagsRepository = (fetch: $Fetch<Tag, NitroFetchRequest>) => ({
     async getList(
         pagination: DataTablePagination
     ): Promise<DataTableList<Tag>> {
@@ -30,16 +30,9 @@ export const TagRepository = (fetch: $Fetch<Tag, NitroFetchRequest>) => ({
         });
     },
 
-    async deleteCategory(guid: string): Promise<void> {
+    async deleteTag(guid: string): Promise<void> {
         return fetch(`/api/tags/${guid}`, {
             method: "DELETE",
-        });
-    },
-
-    async edit(tag: Tag): Promise<Category> {
-        return fetch(`/api/tags/${tag.guid}`, {
-            method: "PUT",
-            body: tag,
         });
     },
 });

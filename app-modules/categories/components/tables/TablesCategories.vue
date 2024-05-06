@@ -6,7 +6,7 @@ import {
     symbolEditCategory,
 } from "~/app-modules/categories/symbols/CategoryListTable";
 import { categoryListColumns } from "~/app-modules/categories/types/CategoryListColumns";
-import { type Category, CategoryRepository } from "~/repositories/Categories";
+import { type Category, CategoriesRepository } from "~/repositories/Categories";
 
 const pagination = reactive<DataTablePagination>({
     pageCount: 1,
@@ -15,7 +15,7 @@ const pagination = reactive<DataTablePagination>({
 });
 
 const { $apiPublicFetch } = useNuxtApp();
-const categoryRepo = CategoryRepository($apiPublicFetch);
+const categoryRepo = CategoriesRepository($apiPublicFetch);
 
 const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
     "categories",

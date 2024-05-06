@@ -9,10 +9,8 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { symbolDeleteCategory } from "~/app-modules/categories/symbols/CategoryListTable";
-import ModalsEditCategory from "~/app-modules/categories/components/modals/ModalsEditCategory.vue";
-import type { Tag } from "~/app-modules/tags/types/Tag";
-import ModalsEditTag from "~/app-modules/tags/components/modals/ModalsEditTag.vue";
+import type { Tag } from "~/repositories/Tags";
+import { symbolDeleteTag } from "~/app-modules/tags/symbols/TagListTable";
 
 type PropsTablesTagRowDropdown = {
     tag: Tag;
@@ -20,15 +18,9 @@ type PropsTablesTagRowDropdown = {
 
 defineProps<PropsTablesTagRowDropdown>();
 
-const isOpen = ref(false);
-
-const deleteTag = inject(symbolDeleteCategory, () => {
+const deleteTag = inject(symbolDeleteTag, () => {
     console.error("deleteTag function is not provided");
 });
-
-function openModal(): void {
-    isOpen.value = true;
-}
 </script>
 
 <template>
@@ -45,10 +37,6 @@ function openModal(): void {
             <DropdownMenuItem @click="deleteTag(tag.guid)">
                 {{ $t("delete") }}
             </DropdownMenuItem>
-            <DropdownMenuItem @click="openModal">{{
-                $t("edit")
-            }}</DropdownMenuItem>
         </DropdownMenuContent>
-        <ModalsEditTag ref="modalRef" :open="isOpen" :tag="tag" />
     </DropdownMenu>
 </template>

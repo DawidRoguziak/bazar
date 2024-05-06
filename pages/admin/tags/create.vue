@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import FormsTag from "~/app-modules/tags/components/forms/FormsTag.vue";
-import { type Tag, TagRepository } from "~/repositories/Tags";
+import { type Tag, TagsRepository } from "~/repositories/Tags";
 
 definePageMeta({
     layout: "admin-menu",
 });
 
 const { $apiPublicFetch } = useNuxtApp();
-const tagRepository = TagRepository($apiPublicFetch);
+const tagRepository = TagsRepository($apiPublicFetch);
 
 function onSubmit({
     data,

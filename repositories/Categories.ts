@@ -8,7 +8,7 @@ export type Category = {
     name_en: string;
 };
 
-export const CategoryRepository = (
+export const CategoriesRepository = (
     fetch: $Fetch<Category, NitroFetchRequest>
 ) => ({
     async getList(

@@ -3,12 +3,8 @@ import { tagListColumns } from "~/app-modules/tags/types/TagListColumns";
 import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
 import type { DataTableList } from "~/components/generic/data/DataTableList";
 
-import {
-    symbolDeleteTag,
-    symbolEditTag,
-} from "~/app-modules/tags/symbols/TagListTable";
-import { type Tag, TagRepository } from "~/repositories/Tags";
-import { CategoryRepository } from "~/repositories/Categories";
+import { symbolDeleteTag } from "~/app-modules/tags/symbols/TagListTable";
+import { type Tag, TagsRepository } from "~/repositories/Tags";
 
 const pagination = reactive<DataTablePagination>({
     pageCount: 1,
@@ -17,7 +13,7 @@ const pagination = reactive<DataTablePagination>({
 });
 
 const { $apiPublicFetch } = useNuxtApp();
-const tagRepository = TagRepository($apiPublicFetch);
+const tagRepository = TagsRepository($apiPublicFetch);
 
 const { data, pending, refresh } = useLazyAsyncData<DataTableList<Tag>>(
     "tags",
@@ -34,12 +30,7 @@ const { data, pending, refresh } = useLazyAsyncData<DataTableList<Tag>>(
 );
 
 async function submitDeleteTag(guid: string) {
-    await tagRepository.deleteCategory(guid);
-    await refresh();
-}
-
-async function submitEditTag(tag: Tag) {
-    await tagRepository.edit(tag);
+    await tagRepository.deleteTag(guid);
     await refresh();
 }
 
@@ -50,7 +41,6 @@ function onPaginationChange(newPagination: DataTablePagination) {
 }
 
 provide(symbolDeleteTag, submitDeleteTag);
-provide(symbolEditTag, submitEditTag);
 </script>
 
 <template>
