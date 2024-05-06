@@ -2,7 +2,7 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import { object, string } from "zod";
 import { useForm } from "vee-validate";
-import type { Tag } from "~/app-modules/tags/types/Tag";
+import type { Tag } from "~/repositories/Tags";
 
 const emit = defineEmits<{
     submit: [{ data: Partial<Tag>; setErrors: (fields: any) => void }];

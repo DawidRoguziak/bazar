@@ -2,7 +2,7 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import { object, string } from "zod";
 import { useForm } from "vee-validate";
-import type { Category } from "~/app-modules/categories/types/Category";
+import type { Category } from "~/repositories/Categories";
 
 const emit = defineEmits<{
     submit: [{ data: Partial<Category>; setErrors: (fields: any) => void }];

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import FormsTag from "~/app-modules/tags/components/forms/FormsTag.vue";
-import { useTagsApi } from "~/app-modules/tags/composable/useTagsApi";
-import type { Tag } from "~/app-modules/tags/types/Tag";
+import { type Tag, TagRepository } from "~/repositories/Tags";
 
 definePageMeta({
     layout: "admin-menu",
 });
 
-const { createTag } = useTagsApi();
+const { $apiPublicFetch } = useNuxtApp();
+const tagRepository = TagRepository($apiPublicFetch);
 
 function onSubmit({
     data,
@@ -16,7 +16,7 @@ function onSubmit({
     data: Tag;
     setErrors(fields: any): void;
 }) {
-    createTag(data);
+    tagRepository.create(data);
 }
 </script>
 

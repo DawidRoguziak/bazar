@@ -19,7 +19,7 @@ const categoryRepo = CategoryRepository($apiPublicFetch);
 
 const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
     "categories",
-    () => categoryRepo.get(pagination),
+    () => categoryRepo.getList(pagination),
     {
         default: () => ({
             items: [],

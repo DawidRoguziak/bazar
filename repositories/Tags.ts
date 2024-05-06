@@ -1,20 +1,19 @@
 import type { $Fetch, NitroFetchRequest } from "nitropack";
 import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
 import type { DataTableList } from "~/components/generic/data/DataTableList";
+import type { Category } from "~/repositories/Categories";
 
-export type Category = {
+export type Tag = {
     guid: string;
-    name_pl: string;
-    name_en: string;
+    pl: string;
+    en: string;
 };
 
-export const CategoryRepository = (
-    fetch: $Fetch<Category, NitroFetchRequest>
-) => ({
+export const TagRepository = (fetch: $Fetch<Tag, NitroFetchRequest>) => ({
     async getList(
         pagination: DataTablePagination
-    ): Promise<DataTableList<Category>> {
-        return fetch<DataTableList<Category>>("/api/categories", {
+    ): Promise<DataTableList<Tag>> {
+        return fetch<DataTableList<Tag>>("/api/tags", {
             method: "GET",
             query: {
                 page_number: pagination.pageIndex,
@@ -24,23 +23,23 @@ export const CategoryRepository = (
         });
     },
 
-    async create(data: Omit<Category, "guid">): Promise<Category> {
-        return fetch("/api/categories", {
+    async create(data: Omit<Tag, "guid">): Promise<Category> {
+        return fetch("/api/tags", {
             method: "POST",
             body: { ...data },
         });
     },
 
     async deleteCategory(guid: string): Promise<void> {
-        return fetch(`/api/categories/${guid}`, {
+        return fetch(`/api/tags/${guid}`, {
             method: "DELETE",
         });
     },
 
-    async edit(category: Category): Promise<Category> {
-        return fetch(`/api/categories/${category.guid}`, {
+    async edit(tag: Tag): Promise<Category> {
+        return fetch(`/api/tags/${tag.guid}`, {
             method: "PUT",
-            body: category,
+            body: tag,
         });
     },
 });

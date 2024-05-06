@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { symbolDeleteCategory } from "~/app-modules/categories/symbols/CategoryListTable";
 import ModalsEditCategory from "~/app-modules/categories/components/modals/ModalsEditCategory.vue";
-import type { Category } from "~/app-modules/categories/types/Category";
+import type { Category } from "~/repositories/Categories";
 
 type PropsTablesCategoryRowDropdown = {
     category: Category;
