@@ -1,5 +1,5 @@
 import type { InjectionKey } from "vue";
-import type { Category } from "~/app-modules/categories/tables/categories/columns";
+import type { Category } from "~/repositories/Categories";
 
 export const symbolDeleteCategory = Symbol() as InjectionKey<
     (guid: string) => void

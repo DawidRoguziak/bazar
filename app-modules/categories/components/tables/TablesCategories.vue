@@ -5,9 +5,8 @@ import {
     symbolDeleteCategory,
     symbolEditCategory,
 } from "~/app-modules/categories/symbols/CategoryListTable";
-import type { Category } from "~/app-modules/categories/types/Category";
 import { categoryListColumns } from "~/app-modules/categories/types/CategoryListColumns";
-import { useCategoriesApi } from "~/app-modules/categories/composables/useCategoriesApi";
+import { type Category, CategoryRepository } from "~/repositories/Categories";
 
 const pagination = reactive<DataTablePagination>({
     pageCount: 1,
@@ -15,11 +14,12 @@ const pagination = reactive<DataTablePagination>({
     pageIndex: 0,
 });
 
-const { deleteCategory, getCategories, editCategory } = useCategoriesApi();
+const { $apiPublicFetch } = useNuxtApp();
+const categoryRepo = CategoryRepository($apiPublicFetch);
 
 const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
     "categories",
-    () => getCategories(pagination),
+    () => categoryRepo.get(pagination),
     {
         default: () => ({
             items: [],
@@ -32,12 +32,12 @@ const { data, pending, refresh } = useLazyAsyncData<DataTableList<Category>>(
 );
 
 async function submitDeleteCategory(guid: string) {
-    await deleteCategory(guid);
+    await categoryRepo.deleteCategory(guid);
     await refresh();
 }
 
 async function submitEditCategory(category: Category) {
-    await editCategory(category);
+    await categoryRepo.edit(category);
     await refresh();
 }
 

@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { Category } from "~/app-modules/categories/types/Category";
 import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
-import { useCategoriesApi } from "~/app-modules/categories/composables/useCategoriesApi";
+import { type Category, CategoryRepository } from "~/repositories/Categories";
 
 definePageMeta({
     layout: "admin-menu",
 });
 
-const { createCategory } = useCategoriesApi();
+const { $apiPublicFetch } = useNuxtApp();
+const categoryRepo = CategoryRepository($apiPublicFetch);
 
 function onSubmit({
     data,
@@ -16,7 +16,7 @@ function onSubmit({
     data: Category;
     setErrors(fields: any): void;
 }) {
-    createCategory(data);
+    categoryRepo.create(data);
 }
 </script>
 
