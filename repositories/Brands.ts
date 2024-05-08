@@ -9,7 +9,7 @@ export type Brand = {
     logo_file?: File;
 };
 
-export const BrandsRepository = (fetch: $Fetch<Brand, NitroFetchRequest>) => ({
+export const BrandsRepository = (fetch: $Fetch<any, NitroFetchRequest>) => ({
     async getList(
         pagination: DataTablePagination
     ): Promise<DataTableList<Brand>> {
@@ -35,13 +35,13 @@ export const BrandsRepository = (fetch: $Fetch<Brand, NitroFetchRequest>) => ({
         });
     },
 
-    async create(data: Omit<Brand, "guid">): Promise<Brand> {
+    async create(data: Partial<Brand>): Promise<Brand> {
         let fileUploadResult = null;
         if (data.logo_file) {
             fileUploadResult = await this.uploadFile(data.logo_file);
         }
 
-        if (fileUploadResult?.file_url) {
+        if (!fileUploadResult?.file_url) {
             return Promise.reject("Cannot upload file");
         }
 

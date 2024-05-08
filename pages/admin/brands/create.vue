@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import FormsBrand from "~/app-modules/brands/components/forms/FormsBrand.vue";
-import type { Brand } from "~/app-modules/brands/types/Brand";
-import { useBrandsApi } from "~/app-modules/brands/composables/useBrandsApi";
+import { type Brand, BrandsRepository } from "~/repositories/Brands";
 
 definePageMeta({
     layout: "admin-menu",
 });
 
-const { submitBrand } = useBrandsApi();
+const { $apiPublicFetch } = useNuxtApp();
+const brandsRepository = BrandsRepository($apiPublicFetch);
 
 function onSubmit({
     data,
@@ -16,8 +16,7 @@ function onSubmit({
     data: Partial<Brand>;
     setErrors(fields: any): void;
 }) {
-    console.log(data);
-    submitBrand(data);
+    brandsRepository.create(data);
 }
 </script>
 

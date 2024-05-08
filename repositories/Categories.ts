@@ -9,7 +9,7 @@ export type Category = {
 };
 
 export const CategoriesRepository = (
-    fetch: $Fetch<Category, NitroFetchRequest>
+    fetch: $Fetch<any, NitroFetchRequest>
 ) => ({
     async getList(
         pagination: DataTablePagination

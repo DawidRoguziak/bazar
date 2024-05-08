@@ -1,7 +1,6 @@
 import type { $Fetch, NitroFetchRequest } from "nitropack";
 import type { DataTablePagination } from "~/components/generic/data/DataTablePagination";
 import type { DataTableList } from "~/components/generic/data/DataTableList";
-import type { Category } from "~/repositories/Categories";
 
 export type Tag = {
     guid: string;
@@ -9,7 +8,7 @@ export type Tag = {
     en: string;
 };
 
-export const TagsRepository = (fetch: $Fetch<Tag, NitroFetchRequest>) => ({
+export const TagsRepository = (fetch: $Fetch<any, NitroFetchRequest>) => ({
     async getList(
         pagination: DataTablePagination
     ): Promise<DataTableList<Tag>> {
@@ -23,7 +22,7 @@ export const TagsRepository = (fetch: $Fetch<Tag, NitroFetchRequest>) => ({
         });
     },
 
-    async create(data: Omit<Tag, "guid">): Promise<Category> {
+    async create(data: Omit<Tag, "guid">): Promise<Tag> {
         return fetch("/api/tags", {
             method: "POST",
             body: { ...data },
