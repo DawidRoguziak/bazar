@@ -48,10 +48,6 @@ function openModal(): void {
                 $t("edit")
             }}</DropdownMenuItem>
         </DropdownMenuContent>
-        <ModalsEditCategory
-            ref="modalRef"
-            :open="isOpen"
-            :category="category"
-        />
+        <ModalsEditCategory v-model:open="isOpen" :category="category" />
     </DropdownMenu>
 </template>
