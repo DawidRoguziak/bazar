@@ -27,4 +27,6 @@ export default {
         max_length: "Max length {l}",
         min_length: "Min length {l}",
     },
+    brand_list: "Brand List",
+    create_brand: "Create brand",
 };

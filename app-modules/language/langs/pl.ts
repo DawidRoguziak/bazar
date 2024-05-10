@@ -27,4 +27,6 @@ export default {
         max_length: "Max długość {l}",
         min_length: "Min długość {l}",
     },
+    brand_list: "Lista Marek",
+    create_brand: "Dodaj Markę",
 };

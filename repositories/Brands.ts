@@ -61,9 +61,21 @@ export const BrandsRepository = (fetch: $Fetch<any, NitroFetchRequest>) => ({
     },
 
     async edit(brand: Brand): Promise<Brand> {
+        let fileUploadResult = null;
+        if (brand.logo_file) {
+            fileUploadResult = await this.uploadFile(brand.logo_file);
+        }
+
+        if (!fileUploadResult?.file_url) {
+            return Promise.reject("Cannot upload file");
+        }
+
         return fetch(`/api/brands/${brand.guid}`, {
             method: "PUT",
-            body: brand,
+            body: {
+                ...brand,
+                logo_url: fileUploadResult?.file_url,
+            },
         });
     },
 });

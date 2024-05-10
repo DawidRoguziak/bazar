@@ -1,16 +1,19 @@
 import type { ColumnDef } from "@tanstack/vue-table";
-import TablesCategoryRowDropdown from "~/app-modules/categories/components/tables/TablesCategoryRowDropdown.vue";
 import type { Brand } from "~/repositories/Brands";
+import TablesBrandRowDropdown from "~/app-modules/brands/components/tables/TablesBrandRowDropdown.vue";
 
 export const brandListColumns: ColumnDef<Brand>[] = [
     {
-        accessorKey: "guid",
+        id: "logo_url",
+        enableHiding: false,
+        cell: ({ row }) => {
+            return h("img", {
+                src: row.original.logo_url,
+            });
+        },
     },
     {
-        accessorKey: "name_pl",
-    },
-    {
-        accessorKey: "name_en",
+        accessorKey: "name",
     },
     {
         id: "actions",
@@ -19,8 +22,8 @@ export const brandListColumns: ColumnDef<Brand>[] = [
             return h(
                 "div",
                 { class: "relative" },
-                h(TablesCategoryRowDropdown, {
-                    category: row.original,
+                h(TablesBrandRowDropdown, {
+                    brand: row.original,
                 })
             );
         },

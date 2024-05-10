@@ -62,6 +62,21 @@ const tagsLinks: LinkProp[] = [
     },
 ];
 
+const brandLinks: LinkProp[] = [
+    {
+        title: "brand_list",
+        label: "",
+        href: "/admin/brands",
+        icon: "package_2",
+    },
+    {
+        title: "create_brand",
+        label: "",
+        href: "/admin/brands/create",
+        icon: "box_add",
+    },
+];
+
 const settingsLinks: LinkProp[] = [
     {
         title: "settings",
@@ -126,6 +141,11 @@ function onExpand() {
                 <AppMenuNavMenu
                     :is-collapsed="isCollapsed"
                     :links="tagsLinks"
+                />
+                <UiSeparator />
+                <AppMenuNavMenu
+                    :is-collapsed="isCollapsed"
+                    :links="brandLinks"
                 />
                 <UiSeparator />
                 <AppMenuNavMenu

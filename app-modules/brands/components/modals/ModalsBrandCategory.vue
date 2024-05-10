@@ -5,15 +5,15 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import FormsCategory from "~/app-modules/categories/components/forms/FormsCategory.vue";
-import { symbolEditCategory } from "~/app-modules/categories/symbols/CategoryListTable";
-import type { Category } from "~/repositories/Categories";
+import type { Brand } from "~/repositories/Brands";
+import { symbolEditBrand } from "~/app-modules/brands/symbols/BrandListTable";
+import FormsBrand from "~/app-modules/brands/components/forms/FormsBrand.vue";
 
-defineProps<{ category: Category }>();
+defineProps<{ brand: Brand }>();
 
 const open = defineModel<boolean>("open", { default: false });
 
-const editCategory = inject(symbolEditCategory, () => {
+const editBrand = inject(symbolEditBrand, () => {
     console.error("edit category not provided");
 });
 
@@ -21,10 +21,10 @@ function onSubmit({
     data,
     setErrors,
 }: {
-    data: Partial<Category>;
+    data: Brand;
     setErrors(fields: any): void;
 }) {
-    editCategory(data);
+    editBrand(data);
     open.value = false;
 }
 </script>
@@ -36,7 +36,7 @@ function onSubmit({
                 <DialogTitle>{{ $t("edit_category") }}</DialogTitle>
             </DialogHeader>
 
-            <FormsCategory @submit="onSubmit" :initial-values="category" />
+            <FormsBrand @submit="onSubmit" :initial-values="brand" />
         </DialogContent>
     </Dialog>
 </template>
