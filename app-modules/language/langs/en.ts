@@ -29,4 +29,9 @@ export default {
     },
     brand_list: "Brand List",
     create_brand: "Create brand",
+    api: {
+        success: "Success",
+        created: "Created",
+        error: "Error",
+    },
 };

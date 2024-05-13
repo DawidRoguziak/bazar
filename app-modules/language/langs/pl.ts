@@ -29,4 +29,9 @@ export default {
     },
     brand_list: "Lista Marek",
     create_brand: "Dodaj Markę",
+    api: {
+        success: "Sukces",
+        created: "Stworzono",
+        error: "Błąd",
+    },
 };

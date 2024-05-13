@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useLangStore } from "~/app-modules/language/useLangStore";
 import { ConfigProvider } from "radix-vue";
-import { z } from "zod";
 import { setupZod } from "~/integrations/zod";
+import Toaster from "@/components/ui/toast/Toaster.vue";
 
 const { getLanguage } = useLangStore();
 
@@ -22,6 +22,7 @@ onMounted(() => {
 
 <template>
     <div>
+        <Toaster />
         <ConfigProvider :use-id="useIdFunction">
             <NuxtLayout>
                 <NuxtPage />
