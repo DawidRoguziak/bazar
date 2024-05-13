@@ -22,7 +22,9 @@ onMounted(() => {
 
 <template>
     <div>
-        <Toaster />
+        <ClientOnly>
+            <Toaster />
+        </ClientOnly>
         <ConfigProvider :use-id="useIdFunction">
             <NuxtLayout>
                 <NuxtPage />

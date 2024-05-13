@@ -33,5 +33,6 @@ export default {
         success: "Success",
         created: "Created",
         error: "Error",
+        deleted: "Deleted",
     },
 };

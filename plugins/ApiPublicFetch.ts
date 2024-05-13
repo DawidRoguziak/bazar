@@ -7,10 +7,8 @@ export default defineNuxtPlugin({
 
         const apiPublicFetch = $fetch.create({
             baseURL: "/api/",
-            onResponse({ response, request }) {
-                console.log(response, request);
-
-                if (response.status === 200) {
+            onResponse({ response, request, options, error }) {
+                if (options.method === "PUT" && response.status === 200) {
                     toast({
                         title: $i18n.t("api.success"),
                     });
@@ -23,7 +21,14 @@ export default defineNuxtPlugin({
                     });
                 }
 
-                if (response.status === 400) {
+                if (options.method === "DELETE" && response.status === 204) {
+                    toast({
+                        variant: "success",
+                        title: $i18n.t("api.deleted"),
+                    });
+                }
+
+                if (error !== undefined && response.status === 400) {
                     toast({
                         variant: "destructive",
                         title: $i18n.t("api.error"),
