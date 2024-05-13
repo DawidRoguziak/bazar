@@ -24,7 +24,6 @@ export function getFromBrandSchema(t: Function): ZodType {
                     return z.NEVER;
                 }
 
-                console.log(args.logo_file?.size, MAX_UPLOAD_SIZE);
                 if (MAX_UPLOAD_SIZE <= (args?.logo_file?.size ?? 0)) {
                     ctx.addIssue({
                         code: z.ZodIssueCode.custom,
