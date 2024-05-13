@@ -9,10 +9,8 @@ export type Brand = {
     logo_file?: File;
 };
 
-export const BrandsRepository = (fetch: $Fetch<any, NitroFetchRequest>) => ({
-    async getList(
-        pagination: DataTablePagination
-    ): Promise<DataTableList<Brand>> {
+export const BrandsRepository = (fetch: $Fetch<T, NitroFetchRequest>) => ({
+    async getList(pagination: DataTablePagination): Promise<DataTableList<T>> {
         return fetch<DataTableList<Brand>>("/api/brands", {
             method: "GET",
             query: {
