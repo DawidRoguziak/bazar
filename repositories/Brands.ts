@@ -9,15 +9,24 @@ export type Brand = {
     logo_file?: File;
 };
 
-export const BrandsRepository = (fetch: $Fetch<T, NitroFetchRequest>) => ({
-    async getList(pagination: DataTablePagination): Promise<DataTableList<T>> {
-        return fetch<DataTableList<Brand>>("/api/brands", {
+export const BrandsRepository = (fetch: $Fetch<any, NitroFetchRequest>) => ({
+    async getList<T = Brand>(
+        pagination: DataTablePagination,
+        search: string | undefined = undefined
+    ): Promise<DataTableList<T>> {
+        const query: Record<string, unknown> = {
+            page_number: pagination.pageIndex,
+            page_size: pagination.pageSize,
+            pages_count: pagination.pageCount,
+        };
+
+        if (search) {
+            query.search = search;
+        }
+
+        return fetch<DataTableList<T>>("/api/brands", {
             method: "GET",
-            query: {
-                page_number: pagination.pageIndex,
-                page_size: pagination.pageSize,
-                pages_count: pagination.pageCount,
-            },
+            query,
         });
     },
 
